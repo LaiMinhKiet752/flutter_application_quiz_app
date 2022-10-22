@@ -80,7 +80,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                       height: 5.0,
                     ),
                     Text(
-                      "Joker\n Question",
+                      "Change\n Questions",
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -109,7 +109,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                       height: 5.0,
                     ),
                     Text(
-                      "Fifty\n 50",
+                      "Fifty\n Fifty",
                       textAlign: TextAlign.center,
                     ),
                   ],

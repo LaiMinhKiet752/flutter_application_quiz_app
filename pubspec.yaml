@@ -50,6 +50,9 @@ dependencies:
   flutter_facebook_auth: ^4.4.1+1
   carousel_slider: ^4.1.1
   confetti: ^0.7.0
+  url_launcher_web: ^2.0.13
+  audioplayers_web: ^2.0.1
+  audioplayers: ^1.1.1
   
 
 dev_dependencies:

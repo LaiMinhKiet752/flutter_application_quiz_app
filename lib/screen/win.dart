@@ -38,10 +38,6 @@ class _WinState extends State<Win> {
         ),
       ),
       child: Scaffold(
-        // floatingActionButton: ElevatedButton(
-        //   child: Text("Share With Friends"),
-        //   onPressed: () {},
-        // ),
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
@@ -72,7 +68,7 @@ class _WinState extends State<Win> {
                     "You Won",
                     style: TextStyle(
                       fontSize: 15.0,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),

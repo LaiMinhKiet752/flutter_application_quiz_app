@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/screen/home.dart';
-import 'package:quiz_app/screen/question.dart';
+import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 Future<void> main() async {
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.red,
         ),
         debugShowCheckedModeBanner: false,
-        home: isLogIn ? Home() : Question(),
+        home: isLogIn ? Home() : Profile(),
       ),
     );
   }
