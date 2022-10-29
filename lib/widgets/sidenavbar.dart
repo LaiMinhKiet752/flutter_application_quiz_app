@@ -59,8 +59,13 @@ class SideNav extends StatelessWidget {
                 ),
               ),
             ),
+            Divider(
+              thickness: 2,
+              indent: 20.0,
+              endIndent: 20.0,
+            ),
             SizedBox(
-              height: 50.0,
+              height: 20.0,
             ),
             listItem(
               label: "DAILY QUIZ",

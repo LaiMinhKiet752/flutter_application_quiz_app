@@ -72,7 +72,7 @@ class QuizIntro extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "Science, Space, Astromy, Rocket, ISRO",
+                            "Science, Math",
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
@@ -130,7 +130,7 @@ class QuizIntro extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "I love you baby,I love you baby,I love you baby,I love you baby,I love you baby,I love you baby,I love you baby,I love you baby,I love you baby,.",
+                            "Hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello.",
                             style: TextStyle(
                               fontSize: 15.0,
                             ),

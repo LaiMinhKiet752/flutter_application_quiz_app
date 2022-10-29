@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
             icon: Icon(Icons.person_add),
           ),
         ],
-        backgroundColor: Color.fromARGB(255, 7, 172, 106),
+        backgroundColor: Color.fromARGB(255, 251, 100, 90),
         title: Text(
           "Profile",
           style: TextStyle(
@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
               padding: EdgeInsets.only(top: 10.0),
               height: 300.0,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 7, 172, 106),
+                color: Color.fromARGB(255, 251, 100, 90),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50.0),
                   bottomRight: Radius.circular(50.0),
@@ -171,7 +171,7 @@ class _ProfileState extends State<Profile> {
               padding: EdgeInsets.only(top: 20.0, left: 10.0),
               height: 335.2,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 7, 172, 106),
+                color: Color.fromARGB(255, 251, 100, 90),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50.0),
                   topRight: Radius.circular(50.0),
