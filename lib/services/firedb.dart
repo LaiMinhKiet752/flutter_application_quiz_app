@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quiz_app/services/localdb.dart';
 
 class FireDB {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,11 +13,16 @@ class FireDB {
           .collection("users")
           .doc(current_user!.uid)
           .set({
-        "name": name,
+         "name": name,
         "email": email,
         "photoUrl": photoUrl,
-        "money": "5000"
-      }).then((value) {
+        "money": 0,
+        "rank" :  "NA",
+        "level" : "0"
+      }).then((value) async{
+        await LocalDB.saveMoney("0");
+        await LocalDB.saveRank("NA");
+        await LocalDB.saveLevel("0");
         print("User Registered Successfully");
       });
     }
@@ -29,8 +35,12 @@ class FireDB {
         .collection("users")
         .doc(current_user!.uid)
         .get()
-        .then((value) {
+        .then((value) async{
       user = value.data().toString();
+      print(user);
+      await LocalDB.saveMoney("999999");
+      await LocalDB.saveRank("100");
+      await LocalDB.saveLevel("50");
     });
     if (user.toString() == "null") {
       return false;

@@ -3,6 +3,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/services/auth_fb.dart';
 import 'package:quiz_app/services/auth_gg.dart';
 
@@ -65,6 +66,10 @@ class _LoginState extends State<Login> {
                 elevation: 5.0,
                 onPressed: () async {
                   signInWithFacebook(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Home()));
                 },
               ),
               Text(
@@ -80,6 +85,10 @@ class _LoginState extends State<Login> {
                 elevation: 5.0,
                 onPressed: () async {
                   await signInWithGoogle();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Home()));
                 },
               ),
               SizedBox(

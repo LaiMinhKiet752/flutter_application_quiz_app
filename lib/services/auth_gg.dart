@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quiz_app/services/firedb.dart';
+import 'package:quiz_app/services/localdb.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
 // ignore: body_might_complete_normally_nullable
 Future<User?> signInWithGoogle() async {
-  // try {
   final GoogleSignInAccount? googlesignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
       await googlesignInAccount!.authentication;
@@ -21,13 +21,20 @@ Future<User?> signInWithGoogle() async {
   // ignore: unnecessary_null_comparison
   assert(await user!.getIdToken() != null);
 
-  final User? currentUser = await _auth.currentUser;
+  final User? currentUser = _auth.currentUser;
   assert(currentUser!.uid == user!.uid);
-  print(user);
   await FireDB().createNewUser(user!.displayName.toString(),
       user.email.toString(), user.photoURL.toString(), user.uid.toString());
-  // } catch (e) {
-  //   print("ERROR OCCURED IN SIGN IN");
-  //   print(e);
-  // }
+  await LocalDB.saveUserID(user.uid);
+  await LocalDB.saveName(user.displayName.toString());
+  await LocalDB.saveUrl(user.photoURL.toString());
+
+  print(user);
+}
+
+Future<String> signOut() async {
+  await googleSignIn.signOut();
+  await _auth.signOut();
+  await LocalDB.saveUserID("null");
+  return "SUCCESS";
 }

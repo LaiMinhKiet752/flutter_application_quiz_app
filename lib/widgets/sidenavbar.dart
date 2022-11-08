@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/home.dart';
+import 'package:quiz_app/screen/login.dart';
+import 'package:quiz_app/screen/profile.dart';
+import 'package:quiz_app/services/auth_gg.dart';
 
+// ignore: must_be_immutable
 class SideNav extends StatelessWidget {
-  const SideNav({super.key});
+  String name;
+  String money;
+  String rank;
+  String proUrl;
+  String level;
+  SideNav(
+      {super.key,
+      required this.name,
+      required this.money,
+      required this.rank,
+      required this.proUrl,
+      required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -12,51 +28,73 @@ class SideNav extends StatelessWidget {
         child: ListView(
           // padding: EdgeInsets.symmetric(horizontal: 20.0),
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                CircleAvatar(
-                  radius: 30.0,
-                  backgroundColor: Colors.white,
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Minh Kiet",
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Profile(
+                              name: name,
+                              proUrl: proUrl,
+                              rank: rank,
+                              level: level,
+                              money: money,
+                            )));
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 30.0,
+                          backgroundImage: NetworkImage(proUrl),
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Coins: $money",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 25.0),
+                    child: Text(
+                      "Leaderboard - $rank th Rank",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 19.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      "Coins: 50,000",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 25.0),
-              child: Text(
-                "Leaderboard - 100th Rank",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 19.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                  ),
+                ],
               ),
             ),
             Divider(
@@ -68,20 +106,39 @@ class SideNav extends StatelessWidget {
               height: 20.0,
             ),
             listItem(
+              context: context,
+              path:
+                  MaterialPageRoute(builder: (BuildContext context) => Home()),
               label: "DAILY QUIZ",
               icon: Icons.quiz,
             ),
             listItem(
+              context: context,
+              path:
+                  MaterialPageRoute(builder: (BuildContext context) => Home()),
               label: "Leaderboard",
               icon: Icons.leaderboard,
             ),
             listItem(
+              context: context,
+              path:
+                  MaterialPageRoute(builder: (BuildContext context) => Home()),
               label: "How to use",
               icon: Icons.question_answer,
             ),
             listItem(
+              context: context,
+              path:
+                  MaterialPageRoute(builder: (BuildContext context) => Home()),
               label: "About us",
               icon: Icons.face_retouching_natural_sharp,
+            ),
+            listItem(
+              context: context,
+              path:
+                  MaterialPageRoute(builder: (BuildContext context) => Login()),
+              label: "Logout",
+              icon: Icons.logout_outlined,
             ),
           ],
         ),
@@ -89,10 +146,11 @@ class SideNav extends StatelessWidget {
     );
   }
 
-  Widget listItem({
-    required String label,
-    required IconData icon,
-  }) {
+  Widget listItem(
+      {required String label,
+      required IconData icon,
+      required BuildContext context,
+      required MaterialPageRoute path}) {
     final color = Colors.white;
     final hovercolor = Colors.white60;
 
@@ -104,9 +162,12 @@ class SideNav extends StatelessWidget {
       hoverColor: hovercolor,
       title: Text(
         label,
-        style: TextStyle(color: color),
+        style: TextStyle(color: color, fontSize: 15.0),
       ),
-      onTap: () {},
+      onTap: () async {
+        await signOut();
+        Navigator.pushReplacement(context, path);
+      },
     );
   }
 }

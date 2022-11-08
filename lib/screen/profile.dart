@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/edit_profile.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  String name;
+  String proUrl;
+  String rank;
+  String level;
+  String money;
+  Profile(
+      {super.key,
+      required this.name,
+      required this.proUrl,
+      required this.level,
+      required this.rank,
+      required this.money});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -12,7 +25,12 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -51,20 +69,28 @@ class _ProfileState extends State<Profile> {
                   Stack(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage("assets/img/person.jpg"),
+                        backgroundImage: NetworkImage(widget.proUrl),
                         radius: 50.0,
                       ),
                       Positioned(
                         bottom: 0.0,
                         right: 0.0,
-                        child: Container(
-                          padding: EdgeInsets.all(4.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          child: Icon(
-                            Icons.edit,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Edit_Profile()));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: Icon(
+                              Icons.edit,
+                            ),
                           ),
                         ),
                       ),
@@ -74,7 +100,7 @@ class _ProfileState extends State<Profile> {
                     height: 10.0,
                   ),
                   Text(
-                    "The Rock",
+                    widget.name,
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,
@@ -99,7 +125,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "100",
+                            widget.level,
                             style: TextStyle(
                               fontSize: 35.0,
                               fontWeight: FontWeight.bold,
@@ -119,7 +145,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "#1",
+                            "#${widget.rank}",
                             style: TextStyle(
                               fontSize: 35.0,
                               fontWeight: FontWeight.bold,
