@@ -13,13 +13,13 @@ class FireDB {
           .collection("users")
           .doc(current_user!.uid)
           .set({
-         "name": name,
+        "name": name,
         "email": email,
         "photoUrl": photoUrl,
         "money": 0,
-        "rank" :  "NA",
+        "rank" :  "N/A",
         "level" : "0"
-      }).then((value) async{
+      }).then((value) async {
         await LocalDB.saveMoney("0");
         await LocalDB.saveRank("NA");
         await LocalDB.saveLevel("0");
@@ -27,24 +27,36 @@ class FireDB {
       });
     }
   }
-
+  
   Future<bool> getUser() async {
     final User? current_user = _auth.currentUser;
     String user = "";
+
     await FirebaseFirestore.instance
         .collection("users")
         .doc(current_user!.uid)
         .get()
-        .then((value) async{
+        .then((value) async {
       user = value.data().toString();
       print(user);
       await LocalDB.saveMoney("999999");
-      await LocalDB.saveRank("100");
-      await LocalDB.saveLevel("50");
+      await LocalDB.saveRank("10");
+      await LocalDB.saveLevel("90");
     });
     if (user.toString() == "null") {
       return false;
     } else {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(current_user.uid)
+          .get()
+          .then((value) async {
+        user = value.data().toString();
+        print(user);
+        await LocalDB.saveMoney(value["money"].toString());
+        await LocalDB.saveRank(value["rank"]);
+        await LocalDB.saveLevel(value["level"]);
+      });
       return true;
     }
   }

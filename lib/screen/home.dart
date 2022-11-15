@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String name = 'User Name';
-  String money = '--';
+  String money = '---';
   String lead = '---';
   String proUrl = '---';
   String level = '0';
