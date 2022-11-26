@@ -1,15 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/services/QuestionModel.dart';
+import 'package:quiz_app/services/QuizQueCreator.dart';
 import 'package:quiz_app/widgets/lifeline_sidebar.dart';
 
+// ignore: must_be_immutable
 class Question extends StatefulWidget {
-  const Question({super.key});
+  String quizID;
+  int queMoney;
+  Question({required this.quizID, required this.queMoney});
 
   @override
   State<Question> createState() => _QuestionState();
 }
 
 class _QuestionState extends State<Question> {
+  QuestionModel questionModel = new QuestionModel();
+  genQue() async {
+    await QuizQueCreator.genQuizQue(widget.quizID, widget.queMoney)
+        .then((queData) {
+      setState(() {
+        questionModel.question = queData["question"];
+        questionModel.correctAnswer = queData["correctAnswer"];
+        List options = [
+          queData["opt1"],
+          queData["opt2"],
+          queData["opt3"],
+          queData["opt4"],
+        ];
+        options.shuffle();
+        questionModel.option1 = options[0];
+        questionModel.option2 = options[1];
+        questionModel.option3 = options[2];
+        questionModel.option4 = options[3];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    genQue();
+    super.initState(); 
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +55,7 @@ class _QuestionState extends State<Question> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            "Coins: 20,000",
+            "Coins: ${widget.queMoney}",
             style: TextStyle(
               fontSize: 25.0,
             ),
@@ -76,7 +109,7 @@ class _QuestionState extends State<Question> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0)),
               child: Text(
-                "What is the most popular programming language in 2022?",
+                questionModel.question,
                 style: GoogleFonts.robotoCondensed(
                     fontSize: 22.0, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
@@ -156,7 +189,7 @@ class _QuestionState extends State<Question> {
                   color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(30.0)),
               child: Text(
-                "D. C#",
+                "D. ${questionModel.option4}",
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.white,

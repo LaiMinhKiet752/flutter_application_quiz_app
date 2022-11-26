@@ -1,7 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/question.dart';
+import 'package:quiz_app/services/checkQuizUnlock.dart';
+import 'package:quiz_app/services/quiz_money_check.dart';
 
-class QuizIntro extends StatelessWidget {
-  const QuizIntro({super.key});
+// ignore: must_be_immutable
+class QuizIntro extends StatefulWidget {
+  late String QuizName;
+  late String QuizImgUrl;
+  late String QuizTopics;
+  late String QuizDuration;
+  late String QuizAbout;
+  late String QuizID;
+  late String QuizPrice;
+  QuizIntro(
+      {super.key,
+      required this.QuizAbout,
+      required this.QuizDuration,
+      required this.QuizImgUrl,
+      required this.QuizName,
+      required this.QuizTopics,
+      required this.QuizID,
+      required this.QuizPrice});
+
+  @override
+  State<QuizIntro> createState() => _QuizIntroState();
+}
+
+class _QuizIntroState extends State<QuizIntro> {
+  bool quizIsUnlocked = false;
+  getQuizUnlockStatus() async {
+    await CheckQuizUnlock.checkQuizUnlockStatus(widget.QuizID)
+        .then((unlockStatus) {
+      setState(() {
+        quizIsUnlocked = unlockStatus;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getQuizUnlockStatus();
+    super.initState();  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +51,43 @@ class QuizIntro extends StatelessWidget {
           backgroundColor: Colors.green,
         ),
         child: Text(
-          "START QUIZ",
+          quizIsUnlocked ? "START QUIZ" : "UNLOCK QUIZ",
           style: TextStyle(
             fontSize: 20.0,
           ),
         ),
-        onPressed: () {},
+        onPressed: () async{
+          quizIsUnlocked
+              ? Navigator.push(context, MaterialPageRoute(builder: (context)=> Question(quizID: widget.QuizID, queMoney: 5000)))
+              : QuizMoneyCheck.buyQuiz(
+                      QuizID: widget.QuizID,
+                      QuizPrice: int.parse(widget.QuizPrice))
+                  .then(
+                  (quizBought) {
+                    if (quizBought) {
+                      setState(() {
+                        quizIsUnlocked = true;
+                      });
+                    } else {
+                      return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text(
+                              "You do not have enough money to buy this Quiz!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
@@ -37,7 +108,7 @@ class QuizIntro extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Quiz Name",
+                      widget.QuizName,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 30.0,
@@ -45,7 +116,7 @@ class QuizIntro extends StatelessWidget {
                       ),
                     ),
                     Image.network(
-                      "https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8eW91dHViZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+                      widget.QuizImgUrl,
                       filterQuality: FilterQuality.high,
                       fit: BoxFit.cover,
                       height: 230.0,
@@ -72,7 +143,7 @@ class QuizIntro extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "Science, Math",
+                            widget.QuizTopics,
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
@@ -101,7 +172,7 @@ class QuizIntro extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "10 minutes",
+                            "${widget.QuizDuration} Minutes",
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
@@ -109,6 +180,37 @@ class QuizIntro extends StatelessWidget {
                         ],
                       ),
                     ),
+                    quizIsUnlocked
+                        ? Container()
+                        : Container(
+                            padding: EdgeInsets.all(18.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.money),
+                                    SizedBox(
+                                      width: 6.0,
+                                    ),
+                                    Text(
+                                      "Money - ",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  "Conis: ${widget.QuizPrice}",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                     Container(
                       padding: EdgeInsets.all(18.0),
                       child: Column(
@@ -130,7 +232,7 @@ class QuizIntro extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "Hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello.",
+                            widget.QuizAbout,
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
