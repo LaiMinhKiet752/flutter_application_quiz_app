@@ -2,10 +2,13 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/question.dart';
 
+// ignore: must_be_immutable
 class Win extends StatefulWidget {
-  const Win({super.key});
-
+  late int queMoney;
+  late String QuizID;
+  Win(this.queMoney, this.QuizID);
   @override
   State<Win> createState() => _WinState();
 }
@@ -73,7 +76,7 @@ class _WinState extends State<Win> {
                     ),
                   ),
                   Text(
-                    "Coins: 50,000",
+                    "Coins: ${widget.queMoney}",
                     style: TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.w700,
@@ -93,7 +96,20 @@ class _WinState extends State<Win> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text("Next Question"))
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Question(
+                            quizID: widget.QuizID,
+                            queMoney: (widget.queMoney)*2,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text("Next Question"),
+                  ),
                 ],
               ),
             ),

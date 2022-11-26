@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Looser extends StatelessWidget {
-  const Looser({super.key});
-
+  late int wonMon;
+  late String correctAns;
+  Looser({required this.wonMon, required this.correctAns});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,6 +43,17 @@ class Looser extends StatelessWidget {
                 height: 15,
               ),
               Text(
+                "CORRECT ANSWER IS ${correctAns}",
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
                 "You Won",
                 style: TextStyle(
                   fontSize: 15,
@@ -49,7 +62,7 @@ class Looser extends StatelessWidget {
                 ),
               ),
               Text(
-                "Coins: 50,000",
+                "Coins: ${wonMon == 2500 ? 0 : wonMon}",
                 style: TextStyle(
                   fontSize: 35.0,
                   fontWeight: FontWeight.w700,
@@ -73,7 +86,9 @@ class Looser extends StatelessWidget {
               ),
               ElevatedButton(
                 child: Text("Go To Rewards"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),

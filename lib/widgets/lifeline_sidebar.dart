@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class LifeLine_Drawer extends StatefulWidget {
@@ -181,7 +183,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           ),
                         ),
                         title: Text(
-                          "Coins: ${(5000) * (index + 1)}",
+                          "Coins: ${2500*(pow(2, index + 1))}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
