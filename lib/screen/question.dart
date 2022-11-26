@@ -40,14 +40,16 @@ class _QuestionState extends State<Question> {
     });
   }
 
+  
+
   bool optALocked = false;
   bool optBLocked = false;
   bool optCLocked = false;
   bool optDLocked = false;
   @override
   void initState() {
-    genQue();
     super.initState();
+    genQue();
   }
 
   @override
@@ -70,7 +72,14 @@ class _QuestionState extends State<Question> {
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 251, 100, 90),
         ),
-        drawer: LifeLine_Drawer(),
+        drawer: LifeLine_Drawer(
+          question: questionModel.question,
+          opt1: questionModel.option1,
+          opt2: questionModel.option2,
+          opt3: questionModel.option3,
+          opt4: questionModel.option4,
+          correctAns: questionModel.correctAnswer,
+        ),
         floatingActionButton: ElevatedButton(
           child: Text(
             "QUIT GAME",

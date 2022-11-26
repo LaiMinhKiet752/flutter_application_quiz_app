@@ -1,15 +1,62 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/AudiencePoll.dart';
+import 'package:quiz_app/services/localdb.dart';
 
+// ignore: must_be_immutable
 class LifeLine_Drawer extends StatefulWidget {
-  const LifeLine_Drawer({super.key});
+  late String question;
+  late String opt1;
+  late String opt2;
+  late String opt3;
+  late String opt4;
+  late String correctAns;
+  LifeLine_Drawer(
+      {required this.question,
+      required this.opt1,
+      required this.opt2,
+      required this.opt3,
+      required this.opt4,
+      required this.correctAns});
 
   @override
   State<LifeLine_Drawer> createState() => _LifeLine_DrawerState();
 }
 
 class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
+  Future<bool> checkAudAvail() async {
+    bool AudAvail = true;
+    await LocalDB.getAud().then((value) {
+      AudAvail = value!;
+    });
+    return AudAvail;
+  }
+
+  Future<bool> checkChanAvail() async {
+    bool ChanAvail = true;
+    await LocalDB.getChan().then((value) {
+      ChanAvail = value!;
+    });
+    return ChanAvail;
+  }
+
+  Future<bool> checkFiftyAvail() async {
+    bool FyftyAvail = true;
+    await LocalDB.getFifty().then((value) {
+      FyftyAvail = value!;
+    });
+    return FyftyAvail;
+  }
+
+  Future<bool> checkExpAvail() async {
+    bool ExpAvail = true;
+    await LocalDB.getExp().then((value) {
+      ExpAvail = value!;
+    });
+    return ExpAvail;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -29,63 +76,87 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(
-                  children: [
-                    Card(
-                      elevation: 12.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(12.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.redAccent,
+                InkWell(
+                  onTap: () async {
+                    if (await checkAudAvail()) {
+                      await LocalDB.saveAud(false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AudiencePoll(
+                            question: widget.question,
+                            opt1: widget.opt1,
+                            opt2: widget.opt2,
+                            opt3: widget.opt3,
+                            opt4: widget.opt4,
+                            correctAns: widget.correctAns,
+                          ),
                         ),
-                        child: Icon(
-                          Icons.people,
-                          size: 32.0,
-                          color: Colors.white,
+                      );
+                    } else {
+                      print("AUDIENCE POLL IS ALREADY USED");
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 12.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
+                          child: Icon(
+                            Icons.people,
+                            size: 32.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      "Audience\n Poll",
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        "Audience\n Poll",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  children: [
-                    Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(12.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black54,
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
                         ),
-                        child: Icon(
-                          Icons.change_circle,
-                          size: 32.0,
-                          color: Colors.white,
+                        child: Container(
+                          padding: EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.black54,
+                          ),
+                          child: Icon(
+                            Icons.change_circle,
+                            size: 32.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      "Change\n Questions",
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        "Change\n Questions",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   children: [
@@ -183,7 +254,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           ),
                         ),
                         title: Text(
-                          "Coins: ${2500*(pow(2, index + 1))}",
+                          "Coins: ${2500 * (pow(2, index + 1))}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,

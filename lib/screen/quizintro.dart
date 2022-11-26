@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/question.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
+import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/services/quiz_money_check.dart';
 
 // ignore: must_be_immutable
@@ -27,6 +28,13 @@ class QuizIntro extends StatefulWidget {
 }
 
 class _QuizIntroState extends State<QuizIntro> {
+  setLifeAvail() async {
+    await LocalDB.saveAud(true);
+    await LocalDB.saveChan(true);
+    await LocalDB.saveFifty(true);
+    await LocalDB.saveExp(true);
+  }
+
   bool quizIsUnlocked = false;
   getQuizUnlockStatus() async {
     await CheckQuizUnlock.checkQuizUnlockStatus(widget.QuizID)
@@ -39,8 +47,8 @@ class _QuizIntroState extends State<QuizIntro> {
 
   @override
   void initState() {
+    super.initState();
     getQuizUnlockStatus();
-    super.initState();  
   }
 
   @override
@@ -56,9 +64,16 @@ class _QuizIntroState extends State<QuizIntro> {
             fontSize: 20.0,
           ),
         ),
-        onPressed: () async{
+        onPressed: () async {
           quizIsUnlocked
-              ? Navigator.push(context, MaterialPageRoute(builder: (context)=> Question(quizID: widget.QuizID, queMoney: 5000)))
+              ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Question(quizID: widget.QuizID, queMoney: 5000)))
+                  .then((value) {
+                  setLifeAvail();
+                })
               : QuizMoneyCheck.buyQuiz(
                       QuizID: widget.QuizID,
                       QuizPrice: int.parse(widget.QuizPrice))
