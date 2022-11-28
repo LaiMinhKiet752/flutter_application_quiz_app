@@ -33,6 +33,11 @@ class _QuizIntroState extends State<QuizIntro> {
     await LocalDB.saveChan(true);
     await LocalDB.saveFifty(true);
     await LocalDB.saveExp(true);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                Question(quizID: widget.QuizID, queMoney: 5000)));
   }
 
   bool quizIsUnlocked = false;
@@ -66,14 +71,7 @@ class _QuizIntroState extends State<QuizIntro> {
         ),
         onPressed: () async {
           quizIsUnlocked
-              ? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Question(quizID: widget.QuizID, queMoney: 5000)))
-                  .then((value) {
-                  setLifeAvail();
-                })
+              ? setLifeAvail()
               : QuizMoneyCheck.buyQuiz(
                       QuizID: widget.QuizID,
                       QuizPrice: int.parse(widget.QuizPrice))

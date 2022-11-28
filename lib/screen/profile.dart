@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/edit_profile.dart';
+import 'package:quiz_app/services/localdb.dart';
 
 // ignore: must_be_immutable
 class Profile extends StatefulWidget {
@@ -21,6 +23,30 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  late List<QueryDocumentSnapshot<Map<String, dynamic>>> LeadersList;
+  getLeaders() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .orderBy("money")
+        .get()
+        .then((value) {
+      setState(() {
+        LeadersList = value.docs.reversed.toList();
+        widget.rank = (LeadersList.indexWhere(
+                    (element) => element.data()["name"] == widget.name) +
+                1)
+            .toString();
+      });
+    });
+    await LocalDB.saveRank(widget.rank);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLeaders();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,26 +151,6 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            widget.level,
-                            style: TextStyle(
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white.withOpacity(0.9),
-                            ),
-                          ),
-                          Text(
-                            "Level",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
                             "#${widget.rank}",
                             style: TextStyle(
                               fontSize: 35.0,
@@ -210,15 +216,22 @@ class _ProfileState extends State<Profile> {
                       title: Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage:
-                                AssetImage("assets/img/person.jpg"),
+                            backgroundImage: NetworkImage(
+                                LeadersList[index].data()["photoUrl"]),
                             radius: 20.0,
                           ),
                           SizedBox(
                             width: 10.0,
                           ),
                           Text(
-                            "The Rock",
+                            LeadersList[index]
+                                        .data()["name"]
+                                        .toString()
+                                        .length >=
+                                    12
+                                ? "${(LeadersList[index].data()["name"]).toString().substring(0, 12)}..."
+                                : (LeadersList[index].data()["name"])
+                                    .toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -234,7 +247,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       trailing: Text(
-                        "Coins: ${(200000 / (index + 1)).toString().substring(0, 5)}",
+                        "Coins: ${LeadersList[index]["money"].toString()}",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -248,7 +261,7 @@ class _ProfileState extends State<Profile> {
                         indent: 15.0,
                         endIndent: 15.0,
                       ),
-                  itemCount: 12),
+                  itemCount: LeadersList.length),
             ),
           ],
         ),

@@ -45,6 +45,7 @@ class FireDB {
     }
   }
 
+
   Future<bool> getUser() async {
     final User? current_user = _auth.currentUser;
     String user = "";

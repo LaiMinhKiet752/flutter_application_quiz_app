@@ -19,6 +19,7 @@ class Question extends StatefulWidget {
 
 class _QuestionState extends State<Question> {
   QuestionModel questionModel = new QuestionModel();
+
   genQue() async {
     await QuizQueCreator.genQuizQue(widget.quizID, widget.queMoney)
         .then((queData) {
@@ -36,6 +37,8 @@ class _QuestionState extends State<Question> {
         questionModel.option2 = options[1];
         questionModel.option3 = options[2];
         questionModel.option4 = options[3];
+
+        
       });
     });
   }
@@ -79,6 +82,8 @@ class _QuestionState extends State<Question> {
           opt3: questionModel.option3,
           opt4: questionModel.option4,
           correctAns: questionModel.correctAnswer,
+          quizID: widget.quizID,
+          currentQueMon: widget.queMoney,
         ),
         floatingActionButton: ElevatedButton(
           child: Text(

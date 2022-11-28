@@ -1,24 +1,33 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/AskTheExpert.dart';
 import 'package:quiz_app/screen/AudiencePoll.dart';
+import 'package:quiz_app/screen/Fifty50.dart';
+import 'package:quiz_app/screen/question.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 // ignore: must_be_immutable
 class LifeLine_Drawer extends StatefulWidget {
   late String question;
+  late String quizID;
   late String opt1;
   late String opt2;
   late String opt3;
   late String opt4;
   late String correctAns;
-  LifeLine_Drawer(
-      {required this.question,
-      required this.opt1,
-      required this.opt2,
-      required this.opt3,
-      required this.opt4,
-      required this.correctAns});
+  late int currentQueMon;
+  LifeLine_Drawer({
+    required this.question,
+    required this.quizID,
+    required this.opt1,
+    required this.opt2,
+    required this.opt3,
+    required this.opt4,
+    required this.correctAns,
+    required this.currentQueMon,
+  });
 
   @override
   State<LifeLine_Drawer> createState() => _LifeLine_DrawerState();
@@ -42,11 +51,11 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
   }
 
   Future<bool> checkFiftyAvail() async {
-    bool FyftyAvail = true;
+    bool FiftyAvail = true;
     await LocalDB.getFifty().then((value) {
-      FyftyAvail = value!;
+      FiftyAvail = value!;
     });
-    return FyftyAvail;
+    return FiftyAvail;
   }
 
   Future<bool> checkExpAvail() async {
@@ -128,6 +137,19 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                   ),
                 ),
                 InkWell(
+                  onTap: () async {
+                    if (await checkChanAvail()) {
+                      await LocalDB.saveChan(false);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Question(
+                                  quizID: widget.quizID,
+                                  queMoney: widget.currentQueMon)));
+                    } else {
+                      print("CHANGE QUESTIONS IS ALREADY USED");
+                    }
+                  },
                   child: Column(
                     children: [
                       Card(
@@ -139,7 +161,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.black54,
+                            color: Colors.redAccent,
                           ),
                           child: Icon(
                             Icons.change_circle,
@@ -158,63 +180,114 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    Card(
-                      elevation: 12.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(12.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.redAccent,
+                InkWell(
+                  onTap: () async {
+                    if (await checkFiftyAvail()) {
+                      await LocalDB.saveFifty(false);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Fifty50(
+                                    opt1: widget.opt1,
+                                    opt2: widget.opt2,
+                                    opt3: widget.opt3,
+                                    opt4: widget.opt4,
+                                    correctAns: widget.correctAns,
+                                  )));
+                    } else {
+                      print("FIFTY 50 IS ALREADY USED");
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 12.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
                         ),
-                        child: Icon(
-                          Icons.star_half,
-                          size: 32.0,
-                          color: Colors.white,
+                        child: Container(
+                          padding: EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
+                          child: Icon(
+                            Icons.star_half,
+                            size: 32.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      "Fifty\n Fifty",
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        "Fifty\n Fifty",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  children: [
-                    Card(
-                      elevation: 12.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(12.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.redAccent,
+                InkWell(
+                  onTap: () async {
+                    if (await checkExpAvail()) {
+                      String ytUrl = "";
+                      await FirebaseFirestore.instance
+                          .collection("quizzes")
+                          .doc(widget.quizID)
+                          .collection("questions")
+                          .where("question", isEqualTo: widget.question)
+                          .get()
+                          .then((value) async {
+                        print("ASK THE EXPERT HERE");
+                        print(widget.quizID);
+                        print(widget.question);
+                        value.docs.forEach((element) {
+                          print("YT LINK IS HERE");
+                          print(element.data()["AnswerYTLinkID"]);
+                          ytUrl = element.data()["AnswerYTLinkID"];
+                        });
+                        print(value.docs.elementAt(0).data()["AnswerYTLinkID"]);
+                        await LocalDB.saveExp(false);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AskTheExpert(
+                                    question: widget.question, ytURL: ytUrl)));
+                      });
+                    }else{
+                       print("ASK THE EXPERT IS ALREADY USED");
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 12.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
                         ),
-                        child: Icon(
-                          Icons.desktop_mac,
-                          size: 32.0,
-                          color: Colors.white,
+                        child: Container(
+                          padding: EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
+                          child: Icon(
+                            Icons.desktop_mac,
+                            size: 32.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      "Ask The\n Expert",
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        "Ask The\n Expert",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -245,20 +318,36 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                     reverse: true,
                     itemCount: 13,
                     itemBuilder: (context, index) {
+                      if (2500 * (pow(2, index + 1)) == widget.currentQueMon) {
+                        return ListTile(
+                          tileColor: Colors.deepPurpleAccent,
+                          leading: Text(
+                            "${index + 1}.",
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
+                          title: Text(
+                            "Coins: ${2500 * (pow(2, index + 1))}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 20.0),
+                          ),
+                          trailing: Icon(
+                            Icons.circle,
+                            color: Colors.redAccent,
+                          ),
+                        );
+                      }
                       return ListTile(
                         leading: Text(
                           "${index + 1}.",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.grey,
-                          ),
+                          style: TextStyle(fontSize: 17.0, color: Colors.grey),
                         ),
                         title: Text(
                           "Coins: ${2500 * (pow(2, index + 1))}",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                          ),
+                              fontWeight: FontWeight.bold, fontSize: 18.0),
                         ),
                         trailing: Icon(Icons.circle),
                       );
