@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/question.dart';
+import 'package:quiz_app/services/firedb.dart';
 
 // ignore: must_be_immutable
 class Win extends StatefulWidget {
@@ -25,6 +26,29 @@ class _WinState extends State<Win> {
     confettiController.play();
   }
 
+  Future<bool?> showWarning(
+          {required BuildContext context,
+          required String title,
+          required String content}) async =>
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            ElevatedButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text("No!")),
+            ElevatedButton(
+                onPressed: () async {
+                  await FireDB.updateMoney(widget.queMoney);
+                  Navigator.pop(context, true);
+                },
+                child: Text("Okay!")),
+          ],
+        ),
+      );
+
   void initController() {
     confettiController =
         ConfettiController(duration: const Duration(seconds: 1));
@@ -32,89 +56,98 @@ class _WinState extends State<Win> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/img/win.jpg"),
-          filterQuality: FilterQuality.high,
-          fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () async {
+        final exitQuiz = await showWarning(
+            context: context,
+            title: "DO YOU WANT TO EXIT QUIZ ?",
+            content: "You will get Coins: ${widget.queMoney} In Your Account.");
+        return exitQuiz ?? false;
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/img/win.jpg"),
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "CONGRATULATIONS",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: [
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "CONGRATULATIONS",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "YOUR ANSWER IS CORRECT",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                    Text(
+                      "YOUR ANSWER IS CORRECT",
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Text(
-                    "You Won",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    SizedBox(
+                      height: 15.0,
                     ),
-                  ),
-                  Text(
-                    "Coins: ${widget.queMoney}",
-                    style: TextStyle(
-                      fontSize: 35.0,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                    Text(
+                      "You Won",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: Image.asset(
-                      "assets/img/cheque.jpg",
-                      filterQuality: FilterQuality.high,
+                    Text(
+                      "Coins: ${widget.queMoney}",
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Question(
-                            quizID: widget.QuizID,
-                            queMoney: (widget.queMoney)*2,
+                    SizedBox(
+                      height: 25.0,
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      child: Image.asset(
+                        "assets/img/cheque.jpg",
+                        filterQuality: FilterQuality.high,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Question(
+                              quizID: widget.QuizID,
+                              queMoney: (widget.queMoney) * 2,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    child: Text("Next Question"),
-                  ),
-                ],
+                        );
+                      },
+                      child: Text("Next Question"),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            buildConfettiWidget(confettiController, pi / 2),
-          ],
+              buildConfettiWidget(confettiController, pi / 2),
+            ],
+          ),
         ),
       ),
     );

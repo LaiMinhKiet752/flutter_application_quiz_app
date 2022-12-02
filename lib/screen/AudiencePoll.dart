@@ -38,25 +38,25 @@ class _AudiencePollState extends State<AudiencePoll> {
     Future.delayed(Duration(seconds: 7), () {
       setState(() {
         if (widget.opt1 == widget.correctAns) {
-          opt1Votes = Random().nextInt(100);
+          opt1Votes = Random().nextInt(50) + 50;
         } else {
           opt1Votes = Random().nextInt(40);
         }
 
         if (widget.opt2 == widget.correctAns) {
-          opt2Votes = Random().nextInt(100);
+          opt2Votes = Random().nextInt(50) + 50;
         } else {
           opt2Votes = Random().nextInt(40);
         }
 
         if (widget.opt3 == widget.correctAns) {
-          opt3Votes = Random().nextInt(100);
+          opt3Votes = Random().nextInt(50) + 50;
         } else {
           opt3Votes = Random().nextInt(40);
         }
 
         if (widget.opt4 == widget.correctAns) {
-          opt4Votes = Random().nextInt(100);
+          opt4Votes = Random().nextInt(50) + 50;
         } else {
           opt4Votes = Random().nextInt(40);
         }
@@ -67,6 +67,7 @@ class _AudiencePollState extends State<AudiencePoll> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

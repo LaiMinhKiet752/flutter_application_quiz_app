@@ -23,7 +23,7 @@ class QuizMoneyCheck {
           .doc(user_id)
           .collection("unlocked_quiz")
           .doc(QuizID)
-          .set({"unlcoked_at": DateTime.now()});
+          .set({"unlocked_at": DateTime.now()});
       print("QUIZ IS UNLOCKED NOW");
       return true;
     } else {
