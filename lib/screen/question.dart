@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/error.dart';
@@ -21,7 +22,7 @@ class Question extends StatefulWidget {
 
 class _QuestionState extends State<Question> {
   QuestionModel questionModel = new QuestionModel();
-
+  AudioPlayer audioPlayer = AudioPlayer();
   genQue() async {
     await QuizQueCreator.genQuizQue(widget.quizID, widget.queMoney)
         .then((queData) {
@@ -52,6 +53,8 @@ class _QuestionState extends State<Question> {
   int seconds = 30;
   Timer? timer;
 
+  final player = AudioCache();
+
   QueTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (_) {
       setState(() => seconds--);
@@ -69,6 +72,23 @@ class _QuestionState extends State<Question> {
     });
   }
 
+  playLocal() async {
+    if (widget.queMoney != 5000) {
+      final player = AudioCache();
+      await player.play("audio_effects/QUESTION.mp3");
+    }
+  }
+
+  playLock() async {
+    final player = AudioCache();
+    player.play("audio_effects/LOCK_SCREEN.mp3");
+  }
+
+  playLosserSound() async {
+    final player = AudioCache();
+    player.play("audio_effects/WORNG_ANSWER.mp3");
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -79,6 +99,7 @@ class _QuestionState extends State<Question> {
   void initState() {
     super.initState();
     genQue();
+    playLocal();
     QueTimer();
   }
 
@@ -239,11 +260,13 @@ class _QuestionState extends State<Question> {
                   print("Double tap to lock the answer");
                 },
                 onLongPress: () {
+                  playLock();
+                  timer?.cancel();
                   setState(() {
                     optALocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 15),
                     () async {
                       if (questionModel.option1 ==
                           questionModel.correctAnswer) {
@@ -258,6 +281,7 @@ class _QuestionState extends State<Question> {
                       } else {
                         // print("What a pity");
                         await FireDB.updateMoney(widget.queMoney ~/ 2);
+                        playLosserSound();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -299,11 +323,13 @@ class _QuestionState extends State<Question> {
                   print("Double tap to lock the answer");
                 },
                 onLongPress: () {
+                  playLock();
+                  timer?.cancel();
                   setState(() {
                     optBLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 15),
                     () async {
                       if (questionModel.option2 ==
                           questionModel.correctAnswer) {
@@ -318,6 +344,7 @@ class _QuestionState extends State<Question> {
                       } else {
                         // print("What a pity");
                         await FireDB.updateMoney(widget.queMoney ~/ 2);
+                         playLosserSound();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -359,11 +386,13 @@ class _QuestionState extends State<Question> {
                   print("Double tap to lock the answer");
                 },
                 onLongPress: () {
+                   playLock();
+                  timer?.cancel();
                   setState(() {
                     optCLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 15),
                     () async {
                       if (questionModel.option3 ==
                           questionModel.correctAnswer) {
@@ -378,6 +407,7 @@ class _QuestionState extends State<Question> {
                       } else {
                         // print("What a pity");
                         await FireDB.updateMoney(widget.queMoney ~/ 2);
+                        playLosserSound();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -419,11 +449,13 @@ class _QuestionState extends State<Question> {
                   print("Double tap to lock the answer");
                 },
                 onLongPress: () {
+                  playLock();
+                  timer?.cancel();
                   setState(() {
                     optDLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 15),
                     () async {
                       if (questionModel.option4 ==
                           questionModel.correctAnswer) {
@@ -438,6 +470,7 @@ class _QuestionState extends State<Question> {
                       } else {
                         // print("What a pity");
                         await FireDB.updateMoney(widget.queMoney ~/ 2);
+                        playLosserSound();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

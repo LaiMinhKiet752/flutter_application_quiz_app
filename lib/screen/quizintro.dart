@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/question.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
@@ -33,6 +34,8 @@ class _QuizIntroState extends State<QuizIntro> {
     await LocalDB.saveChan(true);
     await LocalDB.saveFifty(true);
     await LocalDB.saveExp(true);
+    final player = AudioCache();
+    player.play("audio_effects/KBC_INTRO.mp3");
     Navigator.push(
         context,
         MaterialPageRoute(
