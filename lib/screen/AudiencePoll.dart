@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -62,7 +61,7 @@ class _AudiencePollState extends State<AudiencePoll> {
         }
         isVoting = false;
       });
-      Future.delayed(Duration(seconds: 10), () {
+      Future.delayed(Duration(seconds: 5), () {
         Navigator.pop(context);
       });
     });

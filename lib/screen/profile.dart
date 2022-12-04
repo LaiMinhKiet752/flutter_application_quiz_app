@@ -41,6 +41,20 @@ class _ProfileState extends State<Profile> {
     await LocalDB.saveRank(widget.rank);
   }
 
+  String money_generator(num) {
+    if (num > 999 && num < 99999) {
+      return "${(num / 1000).toStringAsFixed(1)}K";
+    } else if (num > 99999 && num < 999999) {
+      return "${(num / 1000).toStringAsFixed(0)}K";
+    } else if (num > 999999 && num < 999999999) {
+      return "${(num / 1000000).toStringAsFixed(1)}M";
+    } else if (num > 999999999) {
+      return "${(num / 1000000000).toStringAsFixed(1)}B";
+    } else {
+      return num.toString();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -126,12 +140,13 @@ class _ProfileState extends State<Profile> {
                     height: 10.0,
                   ),
                   Text(
-                    widget.name,
+                    "${widget.name}\nCoins: ${money_generator(int.parse(widget.money))}",
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -247,7 +262,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       trailing: Text(
-                        "Coins: ${LeadersList[index]["money"].toString()}",
+                        "Coins: ${money_generator(int.parse(LeadersList[index].data()["money"].toString()))}",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

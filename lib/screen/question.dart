@@ -8,7 +8,6 @@ import 'package:quiz_app/services/QuizQueCreator.dart';
 import 'package:quiz_app/services/firedb.dart';
 import 'package:quiz_app/widgets/lifeline_sidebar.dart';
 import 'dart:async';
-import 'dart:ui';
 
 // ignore: must_be_immutable
 class Question extends StatefulWidget {

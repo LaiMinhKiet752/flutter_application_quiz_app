@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/home.dart';
 
 // ignore: must_be_immutable
 class Looser extends StatelessWidget {
@@ -14,8 +15,11 @@ class Looser extends StatelessWidget {
       ),
       child: Scaffold(
         floatingActionButton: ElevatedButton(
-          child: Text("Retry"),
-          onPressed: () {},
+          child: Text("Go to Home"),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Home()));
+          },
         ),
         backgroundColor: Colors.transparent,
         body: Center(
