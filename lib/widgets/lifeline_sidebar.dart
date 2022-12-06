@@ -34,6 +34,10 @@ class LifeLine_Drawer extends StatefulWidget {
 }
 
 class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
+  bool audience = true;
+  bool chanques = true;
+  bool fifty50 = true;
+  bool exp = true;
   Future<bool> checkAudAvail() async {
     bool AudAvail = true;
     await LocalDB.getAud().then((value) {
@@ -103,7 +107,24 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                         ),
                       );
                     } else {
+                      setState(() {
+                        audience = false;
+                      });
                       print("AUDIENCE POLL IS ALREADY USED");
+                      return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("AUDIENCE POLL IS ALREADY USED!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                   child: Column(
@@ -117,7 +138,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.redAccent,
+                            color: audience ? Colors.redAccent : Colors.grey,
                           ),
                           child: Icon(
                             Icons.people,
@@ -147,7 +168,24 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                                   quizID: widget.quizID,
                                   queMoney: widget.currentQueMon)));
                     } else {
+                      setState(() {
+                        chanques = false;
+                      });
                       print("CHANGE QUESTIONS IS ALREADY USED");
+                      return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("CHANGE QUESTIONS IS ALREADY USED!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                   child: Column(
@@ -161,7 +199,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.redAccent,
+                            color: chanques ? Colors.redAccent : Colors.grey,
                           ),
                           child: Icon(
                             Icons.change_circle,
@@ -195,7 +233,24 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                                     correctAns: widget.correctAns,
                                   )));
                     } else {
+                      setState(() {
+                        fifty50 = false;
+                      });
                       print("FIFTY 50 IS ALREADY USED");
+                      return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("FIFTY 50 IS ALREADY USED!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                   child: Column(
@@ -209,7 +264,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.redAccent,
+                            color: fifty50 ? Colors.redAccent : Colors.grey,
                           ),
                           child: Icon(
                             Icons.star_half,
@@ -255,8 +310,25 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                                 builder: (context) => AskTheExpert(
                                     question: widget.question, ytURL: ytUrl)));
                       });
-                    }else{
-                       print("ASK THE EXPERT IS ALREADY USED");
+                    } else {
+                      setState(() {
+                        exp = false;
+                      });
+                      print("ASK THE EXPERT IS ALREADY USED");
+                      return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("ASK THE EXPERT IS ALREADY USED!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                   child: Column(
@@ -270,7 +342,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.redAccent,
+                            color: exp ? Colors.redAccent : Colors.grey,
                           ),
                           child: Icon(
                             Icons.desktop_mac,

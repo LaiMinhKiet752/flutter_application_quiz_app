@@ -11,7 +11,7 @@ class Looser extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/img/win.jpg"), fit: BoxFit.cover),
+            image: AssetImage("assets/img/loose.png"), fit: BoxFit.cover),
       ),
       child: Scaffold(
         floatingActionButton: ElevatedButton(
@@ -47,9 +47,17 @@ class Looser extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "CORRECT ANSWER IS ${correctAns}",
+                "CORRECT ANSWER IS\n",
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 17.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                "${correctAns}",
+                style: TextStyle(
+                  fontSize: 25.0,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                 ),

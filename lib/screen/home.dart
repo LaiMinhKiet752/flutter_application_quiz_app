@@ -179,21 +179,38 @@ class _HomeState extends State<Home> {
                             Flexible(
                               flex: 1,
                               fit: FlexFit.tight,
-                              child: Stack(
-                                children: [
-                                  Card(
-                                    elevation: 8.0,
-                                    child: Container(
-                                      width: 180.0,
-                                      height: 150.0,
-                                      child: Image.network(
-                                        "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                        filterQuality: FilterQuality.high,
-                                        fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => QuizIntro(
+                                        QuizAbout: (quizzes[0])["about_quiz"],
+                                        QuizDuration: (quizzes[0])["duration"],
+                                        QuizName: (quizzes[0])["quiz_name"],
+                                        QuizTopics: (quizzes[0])["topics"],
+                                        QuizID: (quizzes[0])["Quizid"],
+                                        QuizPrice: (quizzes[0])['unlock_money'],
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    Card(
+                                      elevation: 8.0,
+                                      child: Container(
+                                        height: 150.0,
+                                        width: 180.0,
+                                        child: Image.asset(
+                                          "assets/img/chemistry_banner.jpg",
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -202,21 +219,38 @@ class _HomeState extends State<Home> {
                             Flexible(
                               flex: 1,
                               fit: FlexFit.tight,
-                              child: Stack(
-                                children: [
-                                  Card(
-                                    elevation: 8.0,
-                                    child: Container(
-                                      height: 150.0,
-                                      width: 180.0,
-                                      child: Image.network(
-                                        "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                        filterQuality: FilterQuality.high,
-                                        fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => QuizIntro(
+                                        QuizAbout: (quizzes[1])["about_quiz"],
+                                        QuizDuration: (quizzes[1])["duration"],
+                                        QuizName: (quizzes[1])["quiz_name"],
+                                        QuizTopics: (quizzes[1])["topics"],
+                                        QuizID: (quizzes[1])["Quizid"],
+                                        QuizPrice: (quizzes[1])['unlock_money'],
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    Card(
+                                      elevation: 8.0,
+                                      child: Container(
+                                        height: 150.0,
+                                        width: 180.0,
+                                        child: Image.asset(
+                                          "assets/img/physical_banner.jpg",
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -230,21 +264,38 @@ class _HomeState extends State<Home> {
                             Flexible(
                               flex: 1,
                               fit: FlexFit.tight,
-                              child: Stack(
-                                children: [
-                                  Card(
-                                    elevation: 8.0,
-                                    child: Container(
-                                      height: 150.0,
-                                      width: 180.0,
-                                      child: Image.network(
-                                        "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                        filterQuality: FilterQuality.high,
-                                        fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => QuizIntro(
+                                        QuizAbout: (quizzes[2])["about_quiz"],
+                                        QuizDuration: (quizzes[2])["duration"],
+                                        QuizName: (quizzes[2])["quiz_name"],
+                                        QuizTopics: (quizzes[2])["topics"],
+                                        QuizID: (quizzes[2])["Quizid"],
+                                        QuizPrice: (quizzes[2])['unlock_money'],
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    Card(
+                                      elevation: 8.0,
+                                      child: Container(
+                                        height: 150.0,
+                                        width: 180.0,
+                                        child: Image.asset(
+                                          "assets/img/toan_banner.jpg",
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -253,40 +304,37 @@ class _HomeState extends State<Home> {
                             Flexible(
                               flex: 1,
                               fit: FlexFit.tight,
-                              child: Stack(
-                                children: [
-                                  Card(
-                                    elevation: 8.0,
-                                    child: Container(
-                                      height: 150.0,
-                                      width: 180.0,
-                                      child: Image.network(
-                                        "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                        filterQuality: FilterQuality.high,
-                                        fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => QuizIntro(
+                                        QuizAbout: (quizzes[3])["about_quiz"],
+                                        QuizDuration: (quizzes[3])["duration"],
+                                        QuizName: (quizzes[3])["quiz_name"],
+                                        QuizTopics: (quizzes[3])["topics"],
+                                        QuizID: (quizzes[3])["Quizid"],
+                                        QuizPrice: (quizzes[3])['unlock_money'],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 5.0, bottom: 20.0),
-                        child: Stack(
-                          children: [
-                            Card(
-                              elevation: 8.0,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 150.0,
-                                child: Image.network(
-                                  "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                  filterQuality: FilterQuality.high,
-                                  fit: BoxFit.cover,
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    Card(
+                                      elevation: 8.0,
+                                      child: Container(
+                                        height: 150.0,
+                                        width: 180.0,
+                                        child: Image.asset(
+                                          "assets/img/literary_banner.jpg",
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -357,13 +405,16 @@ class _HomeState extends State<Home> {
                             Container(
                               padding: EdgeInsets.only(left: 20.0),
                               child: Text(
-                                "Unlock New Quizzes",
+                                "General question",
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                                 textAlign: TextAlign.left,
                               ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
                             ),
                             Container(
                               padding: EdgeInsets.only(
@@ -380,18 +431,16 @@ class _HomeState extends State<Home> {
                                           MaterialPageRoute(
                                             builder: (context) => QuizIntro(
                                               QuizAbout:
-                                                  (quizzes[1])["about_quiz"],
+                                                  (quizzes[0])["about_quiz"],
                                               QuizDuration:
-                                                  (quizzes[1])["duration"],
-                                              QuizImgUrl: (quizzes[1])[
-                                                  "quiz_thumbnail"],
+                                                  (quizzes[0])["duration"],
                                               QuizName:
-                                                  (quizzes[1])["quiz_name"],
+                                                  (quizzes[0])["quiz_name"],
                                               QuizTopics:
-                                                  (quizzes[1])["topics"],
-                                              QuizID: (quizzes[1])["Quizid"],
+                                                  (quizzes[0])["topics"],
+                                              QuizID: (quizzes[0])["Quizid"],
                                               QuizPrice:
-                                                  (quizzes[1])['unlock_money'],
+                                                  (quizzes[0])['unlock_money'],
                                             ),
                                           ),
                                         );
@@ -403,11 +452,11 @@ class _HomeState extends State<Home> {
                                             child: Container(
                                               height: 150.0,
                                               width: 180.0,
-                                              child: Image.network(
-                                                (quizzes[1])["quiz_thumbnail"],
+                                              child: Image.asset(
+                                                "assets/img/toan_banner.jpg",
                                                 filterQuality:
                                                     FilterQuality.high,
-                                                fit: BoxFit.cover,
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           ),
@@ -421,234 +470,46 @@ class _HomeState extends State<Home> {
                                   Flexible(
                                     flex: 1,
                                     fit: FlexFit.tight,
-                                    child: Stack(
-                                      children: [
-                                        Card(
-                                          elevation: 8.0,
-                                          child: Container(
-                                            height: 150.0,
-                                            width: 180.0,
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                              filterQuality: FilterQuality.high,
-                                              fit: BoxFit.cover,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => QuizIntro(
+                                              QuizAbout:
+                                                  (quizzes[0])["about_quiz"],
+                                              QuizDuration:
+                                                  (quizzes[0])["duration"],
+                                              QuizName:
+                                                  (quizzes[0])["quiz_name"],
+                                              QuizTopics:
+                                                  (quizzes[0])["topics"],
+                                              QuizID: (quizzes[0])["Quizid"],
+                                              QuizPrice:
+                                                  (quizzes[0])['unlock_money'],
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0,
-                                  right: 10.0,
-                                  top: 5.0,
-                                  bottom: 5.0),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    flex: 1,
-                                    fit: FlexFit.tight,
-                                    child: Stack(
-                                      children: [
-                                        Card(
-                                          elevation: 8.0,
-                                          child: Container(
-                                            height: 150.0,
-                                            width: 180.0,
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                              filterQuality: FilterQuality.high,
-                                              fit: BoxFit.cover,
+                                        );
+                                      },
+                                      child: Stack(
+                                        children: [
+                                          Card(
+                                            elevation: 8.0,
+                                            child: Container(
+                                              height: 150.0,
+                                              width: 180.0,
+                                              child: Image.asset(
+                                                "assets/img/toan_banner.jpg",
+                                                filterQuality:
+                                                    FilterQuality.high,
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Flexible(
-                                    flex: 1,
-                                    fit: FlexFit.tight,
-                                    child: Stack(
-                                      children: [
-                                        Card(
-                                          elevation: 8.0,
-                                          child: Container(
-                                            height: 150.0,
-                                            width: 180.0,
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                              filterQuality: FilterQuality.high,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0,
-                                  right: 10.0,
-                                  top: 5.0,
-                                  bottom: 5.0),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    flex: 1,
-                                    fit: FlexFit.tight,
-                                    child: Stack(
-                                      children: [
-                                        Card(
-                                          elevation: 8.0,
-                                          child: Container(
-                                            height: 150.0,
-                                            width: 180.0,
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                              filterQuality: FilterQuality.high,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Flexible(
-                                    flex: 1,
-                                    fit: FlexFit.tight,
-                                    child: Stack(
-                                      children: [
-                                        Card(
-                                          elevation: 8.0,
-                                          child: Container(
-                                            height: 150.0,
-                                            width: 180.0,
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                              filterQuality: FilterQuality.high,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0,
-                                  right: 10.0,
-                                  top: 5.0,
-                                  bottom: 15.0),
-                              child: Stack(
-                                children: [
-                                  Card(
-                                    elevation: 8.0,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 150.0,
-                                      child: Image.network(
-                                        "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-                                        filterQuality: FilterQuality.high,
-                                        fit: BoxFit.cover,
+                                        ],
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            CarouselSlider(
-                              items: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                          "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-                                      filterQuality: FilterQuality.high,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              options: CarouselOptions(
-                                height: 180.0,
-                                enlargeCenterPage: true,
-                                autoPlay: true,
-                                aspectRatio: 16 / 9,
-                                autoPlayCurve: Curves.fastOutSlowIn,
-                                enableInfiniteScroll: true,
-                                autoPlayAnimationDuration: Duration(
-                                  milliseconds: 800,
-                                ),
-                                viewportFraction: 0.8,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CircleAvatar(
-                                      backgroundColor: Colors.purple,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.redAccent,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.green,
-                                      radius: 35),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CircleAvatar(
-                                      backgroundColor: Colors.purple,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.redAccent,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.green,
-                                      radius: 35),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CircleAvatar(
-                                      backgroundColor: Colors.purple,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.redAccent,
-                                      radius: 35),
-                                  CircleAvatar(
-                                      backgroundColor: Colors.green,
-                                      radius: 35),
                                 ],
                               ),
                             ),
@@ -656,7 +517,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 20.0,
                       ),
                       Text(
                         'v1.0 Made By KDV Company',

@@ -3,6 +3,7 @@ import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/services/auth_gg.dart';
+import 'package:quiz_app/settings_screen.dart';
 
 // ignore: must_be_immutable
 class SideNav extends StatelessWidget {
@@ -109,8 +110,15 @@ class SideNav extends StatelessWidget {
               context: context,
               path:
                   MaterialPageRoute(builder: (BuildContext context) => Home()),
-              label: "DAILY QUIZ",
+              label: "Daily quiz",
               icon: Icons.quiz,
+            ),
+            listItem(
+              context: context,
+              path: MaterialPageRoute(
+                  builder: (BuildContext context) => SettingsScreen()),
+              label: "Settings",
+              icon: Icons.settings,
             ),
             listItem(
               context: context,

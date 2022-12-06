@@ -34,7 +34,7 @@ class _AudiencePollState extends State<AudiencePoll> {
   int opt4Votes = 0;
   bool isVoting = true;
   VotingMachine() {
-    Future.delayed(Duration(seconds: 7), () {
+    Future.delayed(Duration(seconds: 5), () {
       setState(() {
         if (widget.opt1 == widget.correctAns) {
           opt1Votes = Random().nextInt(50) + 50;

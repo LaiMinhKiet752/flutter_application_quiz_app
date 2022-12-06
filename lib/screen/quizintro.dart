@@ -18,7 +18,6 @@ class QuizIntro extends StatefulWidget {
       {super.key,
       required this.QuizAbout,
       required this.QuizDuration,
-      required this.QuizImgUrl,
       required this.QuizName,
       required this.QuizTopics,
       required this.QuizID,
@@ -131,10 +130,10 @@ class _QuizIntroState extends State<QuizIntro> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Image.network(
-                      widget.QuizImgUrl,
+                    Image.asset(
+                      "assets/img/intro_banner.png",
                       filterQuality: FilterQuality.high,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                       height: 230.0,
                       width: MediaQuery.of(context).size.width,
                     ),
@@ -188,7 +187,7 @@ class _QuizIntroState extends State<QuizIntro> {
                             ],
                           ),
                           Text(
-                            "${widget.QuizDuration} Minutes",
+                            "${widget.QuizDuration} Seconds",
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
@@ -219,7 +218,7 @@ class _QuizIntroState extends State<QuizIntro> {
                                   ],
                                 ),
                                 Text(
-                                  "Conis: ${widget.QuizPrice}",
+                                  "Unlock Conis: ${widget.QuizPrice}",
                                   style: TextStyle(
                                     fontSize: 15.0,
                                   ),
@@ -234,7 +233,7 @@ class _QuizIntroState extends State<QuizIntro> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.topic_outlined),
+                              Icon(Icons.app_registration_sharp),
                               SizedBox(
                                 width: 6.0,
                               ),

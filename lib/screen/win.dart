@@ -17,7 +17,7 @@ class Win extends StatefulWidget {
 class _WinState extends State<Win> {
   late ConfettiController confettiController;
 
-   playWinSound() async {
+  playWinSound() async {
     final player = AudioCache();
     player.play("audio_effects/CORRECT.mp3");
   }
@@ -73,7 +73,7 @@ class _WinState extends State<Win> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/img/win.jpg"),
+            image: AssetImage("assets/img/win.png"),
             filterQuality: FilterQuality.high,
             fit: BoxFit.cover,
           ),
@@ -86,6 +86,9 @@ class _WinState extends State<Win> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      height: 100.0,
+                    ),
                     Text(
                       "CONGRATULATIONS",
                       style: TextStyle(

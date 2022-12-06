@@ -133,14 +133,14 @@ class _QuestionState extends State<Question> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/img/background.jpg"),
+          image: AssetImage("assets/img/background.png"),
         ),
       ),
       child: WillPopScope(
         onWillPop: () async {
           final exitQuiz = await showWarning(
               context: context,
-              title: "DO YOU WANT TO EXIT QUIZ ?",
+              title: "DO YOU WANT TO EXIT QUIZ?",
               content:
                   "You Will Get Coins: ${widget.queMoney == 5000 ? 0 : widget.queMoney / 2} In Your Account.");
           return exitQuiz ?? false;
@@ -182,7 +182,7 @@ class _QuestionState extends State<Question> {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("DO YOU WANT TO QUIT THE GAME"),
+                  title: Text("DO YOU WANT TO QUIT THE GAME?"),
                   content: Text(
                       "You will get Coins: ${widget.queMoney == 5000 ? 0 : widget.queMoney / 2} In Your Account."),
                   actions: [
@@ -265,7 +265,7 @@ class _QuestionState extends State<Question> {
                     optALocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 15),
+                    Duration(seconds: 10),
                     () async {
                       if (questionModel.option1 ==
                           questionModel.correctAnswer) {
@@ -302,8 +302,8 @@ class _QuestionState extends State<Question> {
                   ),
                   decoration: BoxDecoration(
                     color: optALocked
-                        ? Colors.yellow.withOpacity(0.4)
-                        : Colors.white.withOpacity(0.4),
+                        ? Colors.yellow.withOpacity(0.7)
+                        : Colors.white.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: Text(
@@ -328,7 +328,7 @@ class _QuestionState extends State<Question> {
                     optBLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 15),
+                    Duration(seconds: 10),
                     () async {
                       if (questionModel.option2 ==
                           questionModel.correctAnswer) {
@@ -365,8 +365,8 @@ class _QuestionState extends State<Question> {
                   ),
                   decoration: BoxDecoration(
                     color: optBLocked
-                        ? Colors.yellow.withOpacity(0.4)
-                        : Colors.white.withOpacity(0.4),
+                        ? Colors.yellow.withOpacity(0.7)
+                        : Colors.white.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: Text(
@@ -391,7 +391,7 @@ class _QuestionState extends State<Question> {
                     optCLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 15),
+                    Duration(seconds: 10),
                     () async {
                       if (questionModel.option3 ==
                           questionModel.correctAnswer) {
@@ -428,8 +428,8 @@ class _QuestionState extends State<Question> {
                   ),
                   decoration: BoxDecoration(
                     color: optCLocked
-                        ? Colors.yellow.withOpacity(0.4)
-                        : Colors.white.withOpacity(0.4),
+                        ? Colors.yellow.withOpacity(0.7)
+                        : Colors.white.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: Text(
@@ -454,7 +454,7 @@ class _QuestionState extends State<Question> {
                     optDLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 15),
+                    Duration(seconds: 10),
                     () async {
                       if (questionModel.option4 ==
                           questionModel.correctAnswer) {
@@ -491,8 +491,8 @@ class _QuestionState extends State<Question> {
                   ),
                   decoration: BoxDecoration(
                     color: optDLocked
-                        ? Colors.yellow.withOpacity(0.4)
-                        : Colors.white.withOpacity(0.4),
+                        ? Colors.yellow.withOpacity(0.7)
+                        : Colors.white.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: Text(
