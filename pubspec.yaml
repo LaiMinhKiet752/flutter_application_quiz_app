@@ -56,6 +56,9 @@ dependencies:
   youtube_player_flutter: ^8.1.1
   logger: ^1.1.0
   flutter_rating_bar: ^4.0.1
+  rating_dialog: ^2.0.4
+  in_app_review: ^2.0.6
+  animated_text_kit: ^4.2.2
   
 
 dev_dependencies:

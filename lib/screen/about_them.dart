@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/components.dart';
@@ -45,20 +46,20 @@ class _AboutThemState extends State<AboutThem> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SansBold(
-                      text: "About KDV Quiz",
-                      size: 35.0,
-                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    Wrap(
-                      spacing: 7.0,
-                      runSpacing: 7.0,
-                      children: [
-                        tealContainer("Flutter"),
-                        tealContainer("Firebase"),
-                        tealContainer("Android"),
+                    AnimatedTextKit(
+                      totalRepeatCount: 100,
+                      animatedTexts: [
+                        TyperAnimatedText(
+                          "About KDV Quiz",
+                          textStyle: GoogleFonts.zenDots(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          speed: const Duration(milliseconds: 200),
+                        ),
                       ],
                     ),
                   ],

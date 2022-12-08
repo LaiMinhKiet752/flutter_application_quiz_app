@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/about_them.dart';
 import 'package:quiz_app/screen/contact_us.dart';
 import 'package:quiz_app/screen/quizintro.dart';
@@ -474,12 +476,18 @@ class _HomeState extends State<Home> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Richest Player In The World",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            AnimatedTextKit(
+                              totalRepeatCount: 100,
+                              animatedTexts: [
+                                TyperAnimatedText(
+                                  "Richest Player In The World",
+                                  textStyle: GoogleFonts.zenDots(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  speed: const Duration(milliseconds: 200),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 20.0,

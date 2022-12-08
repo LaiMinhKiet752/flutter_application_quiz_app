@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
@@ -119,6 +120,13 @@ class SideNav extends StatelessWidget {
                   builder: (BuildContext context) => SettingsScreen()),
               label: "Settings",
               icon: Icons.settings,
+            ),
+            listItem(
+              context: context,
+              path: MaterialPageRoute(
+                  builder: (BuildContext context) => AppReviews()),
+              label: "App reviews",
+              icon: Icons.star,
             ),
             listItem(
               context: context,
