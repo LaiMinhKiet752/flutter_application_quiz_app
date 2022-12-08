@@ -51,9 +51,9 @@ class _LoginState extends State<Login> {
               ),
               Text(
                 "Welcome \n To KDV Quiz App",
-                style: GoogleFonts.ibmPlexMono(
+                style: GoogleFonts.zenDots(
                   color: Colors.white,
-                  fontSize: 35.0,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,

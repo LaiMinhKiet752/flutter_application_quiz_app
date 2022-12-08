@@ -99,9 +99,9 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     onPressed: () async {
                       logger.d(_firstNameController.text);
-                      final addData = new AddDataFireStore();
+                      final addData = new AddMessageFireStore();
                       if (await formKey.currentState!.validate()) {
-                        await addData.addResponse(
+                        await addData.addMessageResponse(
                             _firstNameController.text,
                             _lastNameController.text,
                             _emailController.text,

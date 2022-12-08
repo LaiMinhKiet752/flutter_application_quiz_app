@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/home.dart';
@@ -87,13 +88,33 @@ class SideNav extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 25.0),
-                    child: Text(
-                      "Leaderboard - $rank th Rank",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Leaderboard - ",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 19.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        AnimatedTextKit(
+                          repeatForever: true,
+                          animatedTexts: [
+                            FadeAnimatedText(
+                              '$rank th Rank',
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 19.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ],

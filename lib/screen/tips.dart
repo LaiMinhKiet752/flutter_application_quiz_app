@@ -37,7 +37,7 @@ class _TipsState extends State<Tips> {
             ),
             MaterialButton(
               height: 50.0,
-              minWidth: 200.0,
+              minWidth: 150.0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)),
               color: Color.fromARGB(255, 251, 100, 90),

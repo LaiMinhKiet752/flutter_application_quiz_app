@@ -90,6 +90,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    const colorizeColors = [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ];
+
+    TextStyle colorizeTextStyle = GoogleFonts.hanaleiFill(
+      fontSize: 25.0,
+    );
     return isLoading
         ? Scaffold(
             body: Center(
@@ -477,7 +487,7 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AnimatedTextKit(
-                              totalRepeatCount: 100,
+                              totalRepeatCount: 1000,
                               animatedTexts: [
                                 TyperAnimatedText(
                                   "Richest Player In The World",
@@ -485,7 +495,7 @@ class _HomeState extends State<Home> {
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  speed: const Duration(milliseconds: 200),
+                                  speed: const Duration(milliseconds: 100),
                                 ),
                               ],
                             ),
@@ -496,32 +506,50 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CircleAvatar(
-                                  backgroundImage:
-                                      NetworkImage(TopPlayer["photoUrl"]),
-                                  radius: 50.0,
+                                  backgroundColor: Colors.blueGrey,
+                                  radius: 52.0,
+                                  child: CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(TopPlayer["photoUrl"]),
+                                    radius: 50.0,
+                                  ),
                                 ),
                                 SizedBox(
-                                  width: 50.0,
+                                  width: 30.0,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      TopPlayer["name"].toString().length >= 16
-                                          ? "${TopPlayer["name"].toString().substring(0, 15)}..."
-                                          : TopPlayer["name"],
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.left,
+                                    AnimatedTextKit(
+                                      totalRepeatCount: 1000,
+                                      animatedTexts: [
+                                        ColorizeAnimatedText(
+                                          TopPlayer["name"].toString().length >=
+                                                  16
+                                              ? "${TopPlayer["name"].toString().substring(0, 15)}..."
+                                              : TopPlayer["name"],
+                                          textStyle: colorizeTextStyle,
+                                          colors: colorizeColors,
+                                        ),
+                                      ],
+                                      isRepeatingAnimation: true,
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
                                     ),
-                                    Text(
-                                      "Coins: ${TopPlayer["money"]}",
-                                      style: TextStyle(
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    AnimatedTextKit(
+                                      totalRepeatCount: 1000,
+                                      animatedTexts: [
+                                        ColorizeAnimatedText(
+                                          "Coins: ${TopPlayer["money"]}",
+                                          textStyle: colorizeTextStyle,
+                                          colors: colorizeColors,
+                                        ),
+                                      ],
+                                      isRepeatingAnimation: true,
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
                                     ),
                                   ],
                                 ),
@@ -531,7 +559,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 20.0,
                       ),
                       Container(
                         child: Column(
@@ -539,13 +567,21 @@ class _HomeState extends State<Home> {
                           children: [
                             Container(
                               padding: EdgeInsets.only(left: 20.0),
-                              child: Text(
-                                "General Question",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.left,
+                              child: AnimatedTextKit(
+                                totalRepeatCount: 1000,
+                                animatedTexts: [
+                                  WavyAnimatedText("General Question",
+                                      textStyle: GoogleFonts.zenDots(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                      speed: const Duration(milliseconds: 200)),
+                                ],
+                                isRepeatingAnimation: true,
+                                onTap: () {
+                                  print("Tap Event");
+                                },
                               ),
                             ),
                             SizedBox(

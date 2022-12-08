@@ -289,11 +289,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 100.0,
                   ),
                   MaterialButton(
                     height: 50.0,
-                    minWidth: 200.0,
+                    minWidth: 150.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     color: Color.fromARGB(255, 251, 100, 90),
@@ -311,7 +311,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   SizedBox(
-                    height: 150.0,
+                    height: 70.0,
                   ),
                   Text(
                     'v1.0 Made By KDV Company',

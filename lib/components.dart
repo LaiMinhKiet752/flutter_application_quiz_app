@@ -37,11 +37,11 @@ class Sans extends StatelessWidget {
   }
 }
 
-class AddDataFireStore {
+class AddMessageFireStore {
   var logger = Logger();
   CollectionReference response =
       FirebaseFirestore.instance.collection('messages');
-  Future addResponse(final firstName, final lastName, final email,
+  Future addMessageResponse(final firstName, final lastName, final email,
       final phoneNumber, final message) async {
     return response.add({
       'first name': firstName,
@@ -49,6 +49,25 @@ class AddDataFireStore {
       'email': email,
       'phone number': phoneNumber,
       'message': message
+    }).then((value) {
+      logger.d("Success");
+      return true;
+    }).catchError((error) {
+      logger.d(error);
+      return false;
+    });
+  }
+}
+
+class AddReviewFireStore {
+  var logger = Logger();
+  CollectionReference response =
+      FirebaseFirestore.instance.collection('review');
+  Future addReviewResponse(final review, final rating, final userName) async {
+    return response.add({
+      'review': review,
+      'rating': rating,
+      'User name':userName
     }).then((value) {
       logger.d("Success");
       return true;
