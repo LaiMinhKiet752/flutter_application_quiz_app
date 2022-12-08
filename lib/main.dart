@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/services/localdb.dart';
-import 'package:quiz_app/settings_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.red,
         ),
         debugShowCheckedModeBanner: false,
-        home: isLogIn ? SettingsScreen() : Login(),
+        home: isLogIn ? Home() : Login(),
       ),
     );
   }

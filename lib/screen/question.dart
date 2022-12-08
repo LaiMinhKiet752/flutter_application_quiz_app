@@ -251,9 +251,6 @@ class _QuestionState extends State<Question> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
               InkWell(
                 onTap: () {
                   print("Double tap to lock the answer");
@@ -343,7 +340,7 @@ class _QuestionState extends State<Question> {
                       } else {
                         // print("What a pity");
                         await FireDB.updateMoney(widget.queMoney ~/ 2);
-                         playLosserSound();
+                        playLosserSound();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -385,7 +382,7 @@ class _QuestionState extends State<Question> {
                   print("Double tap to lock the answer");
                 },
                 onLongPress: () {
-                   playLock();
+                  playLock();
                   timer?.cancel();
                   setState(() {
                     optCLocked = true;

@@ -370,25 +370,15 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
               color: Colors.black26,
               thickness: 1,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 12.0),
-              child: Text(
-                "PRIZES",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
             SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
               child: SizedBox(
-                height: 500.0,
+                height: 566.0,
                 child: Container(
                   child: ListView.builder(
                     shrinkWrap: true,
                     reverse: true,
-                    itemCount: 13,
+                    itemCount: 10,
                     itemBuilder: (context, index) {
                       if (2500 * (pow(2, index + 1)) == widget.currentQueMon) {
                         return ListTile(
@@ -396,14 +386,14 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           leading: Text(
                             "${index + 1}.",
                             style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
+                                TextStyle(fontSize: 22.0, color: Colors.white),
                           ),
                           title: Text(
                             "Coins: ${2500 * (pow(2, index + 1))}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: 20.0),
+                                fontSize: 22.0),
                           ),
                           trailing: Icon(
                             Icons.circle,
