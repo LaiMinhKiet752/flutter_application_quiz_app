@@ -206,22 +206,19 @@ class _HomeState extends State<Home> {
                                             builder: (context) => AboutThem()));
                                   },
                                   child: CircleAvatar(
-                                    radius: 38.0,
+                                    radius: 30.0,
                                     backgroundColor: Colors.transparent,
                                     child: CircleAvatar(
-                                      radius: 36.0,
+                                      radius: 28.0,
                                       backgroundColor: Colors.transparent,
                                       child: CircleAvatar(
-                                        radius: 34.0,
+                                        radius: 26.0,
                                         backgroundColor: Colors.transparent,
                                         backgroundImage: AssetImage(
-                                            "assets/img/about_them.png"),
+                                            "assets/img/about_them.gif"),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5.0,
                                 ),
                                 Text(
                                   "About them",
@@ -242,22 +239,19 @@ class _HomeState extends State<Home> {
                                             builder: (context) => Tips()));
                                   },
                                   child: CircleAvatar(
-                                    radius: 34.0,
+                                    radius: 30.0,
                                     backgroundColor: Colors.transparent,
                                     child: CircleAvatar(
-                                      radius: 32.0,
+                                      radius: 28.0,
                                       backgroundColor: Colors.transparent,
                                       child: CircleAvatar(
-                                        radius: 30.0,
+                                        radius: 26.0,
                                         backgroundColor: Colors.transparent,
                                         backgroundImage:
                                             AssetImage("assets/img/tips.gif"),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10.0,
                                 ),
                                 Text(
                                   "Tips",
@@ -287,13 +281,10 @@ class _HomeState extends State<Home> {
                                         radius: 26.0,
                                         backgroundColor: Colors.transparent,
                                         backgroundImage: AssetImage(
-                                            "assets/img/contact_us.png"),
+                                            "assets/img/contact_us.gif"),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 18.0,
                                 ),
                                 Text(
                                   "Contact us",

@@ -88,7 +88,7 @@ class Looser extends StatelessWidget {
                 width: 200.0,
                 height: 200.0,
                 child: Image.asset(
-                  "assets/img/error.png",
+                  "assets/img/error.gif",
                   filterQuality: FilterQuality.high,
                   fit: BoxFit.contain,
                 ),

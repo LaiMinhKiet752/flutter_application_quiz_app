@@ -124,6 +124,7 @@ class _QuizIntroState extends State<QuizIntro> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: TextLiquidFill(
+                        loadDuration: const Duration(seconds: 5),
                         text: '${widget.QuizName}',
                         waveColor: Colors.blue,
                         boxBackgroundColor: Colors.white,
