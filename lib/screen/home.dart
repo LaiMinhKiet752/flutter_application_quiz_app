@@ -80,6 +80,20 @@ class _HomeState extends State<Home> {
     });
   }
 
+  String money_generator(num) {
+    if (num > 999 && num < 99999) {
+      return "${(num / 1000).toStringAsFixed(1)}K";
+    } else if (num > 99999 && num < 999999) {
+      return "${(num / 1000).toStringAsFixed(0)}K";
+    } else if (num > 999999 && num < 999999999) {
+      return "${(num / 1000000).toStringAsFixed(1)}M";
+    } else if (num > 999999999) {
+      return "${(num / 1000000000).toStringAsFixed(1)}B";
+    } else {
+      return num.toString();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -98,7 +112,7 @@ class _HomeState extends State<Home> {
     ];
 
     TextStyle colorizeTextStyle = GoogleFonts.hanaleiFill(
-      fontSize: 25.0,
+      fontSize: 30.0,
     );
     return isLoading
         ? Scaffold(
@@ -496,17 +510,63 @@ class _HomeState extends State<Home> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.blueGrey,
-                                  radius: 52.0,
-                                  child: CircleAvatar(
-                                    backgroundImage:
-                                        NetworkImage(TopPlayer["photoUrl"]),
-                                    radius: 50.0,
-                                  ),
+                                Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Container(
+                                        child: Image.asset(
+                                          "assets/img/fire.gif",
+                                          width: 50.0,
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 0,
+                                      left: 0,
+                                      child: Container(
+                                        child: Image.asset(
+                                          "assets/img/fire.gif",
+                                          width: 50.0,
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 110.0,
+                                      height: 100.0,
+                                      padding: EdgeInsets.all(10.0),
+                                      margin: EdgeInsets.all(10.0),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.yellowAccent,
+                                          width: 2.0,
+                                        ),
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            TopPlayer["photoUrl"],
+                                          ),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color.fromARGB(
+                                                255, 255, 132, 0),
+                                            blurRadius: 2.0,
+                                            spreadRadius: 2.0,
+                                            offset: Offset(-1.0, 1.0),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
-                                  width: 30.0,
+                                  width: 25.0,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -532,7 +592,7 @@ class _HomeState extends State<Home> {
                                       totalRepeatCount: 1000,
                                       animatedTexts: [
                                         ColorizeAnimatedText(
-                                          "Coins: ${TopPlayer["money"]}",
+                                          "Coins: ${money_generator(int.parse(TopPlayer["money"].toString()))}",
                                           textStyle: colorizeTextStyle,
                                           colors: colorizeColors,
                                         ),

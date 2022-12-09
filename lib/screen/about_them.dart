@@ -105,7 +105,6 @@ class _AboutThemState extends State<AboutThem> {
                   AnimatedCard(
                     imagePath: "assets/img/about_2.jpg",
                     width: double.infinity,
-                    reverse: true,
                     fit: BoxFit.cover,
                   ),
                   SizedBox(

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/app_reviews.dart';
+import 'package:quiz_app/screen/daily_quiz.dart';
 import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
@@ -144,7 +145,7 @@ class SideNav extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Home()));
+                        builder: (BuildContext context) => DailyQuiz()));
               },
             ),
             ListTile(
@@ -171,7 +172,7 @@ class SideNav extends StatelessWidget {
               ),
               hoverColor: Colors.white60,
               title: Text(
-                "App reviews",
+                "Rate us",
                 style: TextStyle(color: Colors.white, fontSize: 15.0),
               ),
               onTap: () async {

@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/home.dart';
@@ -15,15 +16,53 @@ class _TipsState extends State<Tips> {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(10.0),
-        margin: EdgeInsets.only(top: 100.0),
+        margin: EdgeInsets.only(top: 50.0),
         child: Column(
           children: [
-            Text(
-              "The Tips For You",
-              style: GoogleFonts.zenDots(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(
+                  height: 100.0,
+                ),
+                Text(
+                  'The Tips For',
+                  style: GoogleFonts.zenDots(
+                    fontSize: 20.0,
+                  ),
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                DefaultTextStyle(
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  child: AnimatedTextKit(
+                    repeatForever: true,
+                    pause: const Duration(milliseconds: 500),
+                    animatedTexts: [
+                      RotateAnimatedText(
+                        'You',
+                        textStyle: GoogleFonts.zenDots(
+                          fontSize: 25.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      RotateAnimatedText(
+                        'Everyone',
+                        textStyle: GoogleFonts.zenDots(
+                          fontSize: 30.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                    onTap: () {
+                      print("Tap Event");
+                    },
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 20.0,
