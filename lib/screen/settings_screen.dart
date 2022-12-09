@@ -39,12 +39,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Card(
                     elevation: 2.0,
                     child: ListTile(
-                      leading: Image.asset("assets/img/audio.png"),
-                      title: Text(
-                        "Sound",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                      leading: Image.asset(
+                        "assets/img/audio.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Container(
+                        margin: EdgeInsets.only(
+                          left: 50.0,
+                        ),
+                        child: Text(
+                          "Sound",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       trailing: Switch(
@@ -108,12 +117,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Card(
                     elevation: 2.0,
                     child: ListTile(
-                      leading: Image.asset("assets/img/phone.png"),
-                      title: Text(
-                        "Vibration",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                      leading: Image.asset(
+                        "assets/img/phone.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                        width: 80.0,
+                      ),
+                      title: Container(
+                        margin: EdgeInsets.only(
+                          left: 28.0,
+                        ),
+                        child: Text(
+                          "Vibration",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       trailing: Switch(
@@ -179,15 +198,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       title: Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          "Music",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 50.0),
+                          child: Text(
+                            "Music",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                      leading: Image.asset("assets/img/music.png"),
+                      leading: Image.asset(
+                        "assets/img/music.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
                       trailing: Switch(
                         value: isMusicSwitched,
                         onChanged: (value) {
@@ -249,14 +275,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Card(
                     elevation: 2.0,
                     child: ListTile(
-                      leading: Image.asset("assets/img/text.png"),
+                      leading: Image.asset(
+                        "assets/img/text.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
                       title: Container(
                         margin: EdgeInsets.symmetric(horizontal: 17.0),
-                        child: Text(
-                          "Font Size",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                        child: Container(
+                          margin: EdgeInsets.only(
+                            left: 50.0,
+                          ),
+                          child: Text(
+                            "Font Size",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -265,27 +300,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Card(
                     elevation: 2.0,
                     child: ListTile(
-                      title: Text(
-                        "Share App",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                      title: Container(
+                        margin: EdgeInsets.only(
+                          left: 50.0,
+                        ),
+                        child: Text(
+                          "Share App",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      leading: Image.asset("assets/img/share.png"),
+                      leading: Image.asset(
+                        "assets/img/share.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Card(
                     elevation: 2.0,
                     child: ListTile(
-                      title: Text(
-                        "Rate Us",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                      title: Container(
+                        margin: EdgeInsets.only(
+                          left: 50.0,
+                        ),
+                        child: Text(
+                          "Rate Us",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      leading: Image.asset("assets/img/star.png"),
+                      leading: Image.asset(
+                        "assets/img/star.png",
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(

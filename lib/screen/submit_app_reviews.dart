@@ -23,9 +23,6 @@ class _SubmitAppReviewsState extends State<SubmitAppReviews> {
                 filterQuality: FilterQuality.high,
               ),
             ),
-            SizedBox(
-              height: 100.0,
-            ),
             Container(
               child: MaterialButton(
                 height: 50.0,

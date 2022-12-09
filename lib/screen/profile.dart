@@ -1,7 +1,9 @@
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/edit_profile.dart';
+import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 // ignore: must_be_immutable
@@ -24,6 +26,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  var colors = [
+    Color.fromARGB(255, 255, 230, 0),
+    Color.fromARGB(255, 0, 225, 255),
+    Color.fromARGB(255, 255, 153, 0),
+  ];
   late List<QueryDocumentSnapshot<Map<String, dynamic>>> LeadersList;
   getLeaders() async {
     await FirebaseFirestore.instance
@@ -69,7 +76,8 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
           },
         ),
         actions: [
@@ -97,7 +105,7 @@ class _ProfileState extends State<Profile> {
           children: [
             Container(
               padding: EdgeInsets.only(top: 10.0),
-              height: 300.0,
+              height: 260.0,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 251, 100, 90),
                 borderRadius: BorderRadius.only(
@@ -149,17 +157,11 @@ class _ProfileState extends State<Profile> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
                   Divider(
                     thickness: 1.0,
                     indent: 20.0,
                     endIndent: 20.0,
                     color: Colors.black26,
-                  ),
-                  SizedBox(
-                    height: 20.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -177,7 +179,7 @@ class _ProfileState extends State<Profile> {
                           Text(
                             "Rank",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -195,21 +197,29 @@ class _ProfileState extends State<Profile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.leaderboard_outlined),
+                Image.asset("assets/img/award.png"),
                 SizedBox(
                   width: 10.0,
                 ),
-                Text(
-                  "Leaderboard",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                AnimatedTextKit(
+                  repeatForever: true,
+                  animatedTexts: [
+                    FlickerAnimatedText(
+                      'Leaderboard',
+                      textStyle: GoogleFonts.zenDots(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                  onTap: () {
+                    print("Tap Event");
+                  },
                 ),
                 SizedBox(
                   width: 10.0,
                 ),
-                Icon(Icons.leaderboard_outlined),
+                Image.asset("assets/img/award.png"),
               ],
             ),
             SizedBox(
@@ -217,9 +227,9 @@ class _ProfileState extends State<Profile> {
             ),
             Container(
               padding: EdgeInsets.only(top: 20.0, left: 10.0),
-              height: 335.2,
+              height: 350.0,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 251, 100, 90),
+                color: Color.fromARGB(255, 64, 157, 2),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50.0),
                   topRight: Radius.circular(50.0),
@@ -249,7 +259,7 @@ class _ProfileState extends State<Profile> {
                                 : (LeadersList[index].data()["name"])
                                     .toString(),
                             style: TextStyle(
-                              color: Colors.white,
+                              color: colors[index],
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -272,7 +282,7 @@ class _ProfileState extends State<Profile> {
                     );
                   },
                   separatorBuilder: (context, index) => Divider(
-                        thickness: 1,
+                        thickness: 2.0,
                         color: Colors.black26,
                         indent: 15.0,
                         endIndent: 15.0,

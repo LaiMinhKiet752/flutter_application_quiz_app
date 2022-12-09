@@ -6,9 +6,8 @@ import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
-import 'package:quiz_app/services/auth_fb.dart';
-import 'package:quiz_app/services/auth_gg.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
+import 'package:quiz_app/services/auth.dart';
 
 // ignore: must_be_immutable
 class SideNav extends StatelessWidget {
@@ -131,70 +130,95 @@ class SideNav extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            listItem(
-              context: context,
-              path:
-                  MaterialPageRoute(builder: (BuildContext context) => Home()),
-              label: "Daily quiz",
-              icon: Icons.quiz,
+            ListTile(
+              leading: Icon(
+                Icons.quiz,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Daily quiz",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
+              ),
+              onTap: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Home()));
+              },
             ),
-            listItem(
-              context: context,
-              path: MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsScreen()),
-              label: "Settings",
-              icon: Icons.settings,
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Settings",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
+              ),
+              onTap: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SettingsScreen()));
+              },
             ),
-            listItem(
-              context: context,
-              path: MaterialPageRoute(
-                  builder: (BuildContext context) => AppReviews()),
-              label: "App reviews",
-              icon: Icons.star,
+            ListTile(
+              leading: Icon(
+                Icons.star,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "App reviews",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
+              ),
+              onTap: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AppReviews()));
+              },
             ),
-            listItem(
-              context: context,
-              path:
-                  MaterialPageRoute(builder: (BuildContext context) => Home()),
-              label: "How to use",
-              icon: Icons.question_answer,
+            ListTile(
+              leading: Icon(
+                Icons.question_answer,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "How to use",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
+              ),
+              onTap: () async {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Home()));
+              },
             ),
-            listItem(
-              context: context,
-              path:
-                  MaterialPageRoute(builder: (BuildContext context) => Login()),
-              label: "Logout",
-              icon: Icons.logout_outlined,
+            ListTile(
+              leading: Icon(
+                Icons.logout_outlined,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Logout",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
+              ),
+              onTap: () async {
+                await signOutGoogleAndFacebook();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Login()));
+              },
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget listItem(
-      {required String label,
-      required IconData icon,
-      required BuildContext context,
-      required MaterialPageRoute path}) {
-    final color = Colors.white;
-    final hovercolor = Colors.white60;
-
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: color,
-      ),
-      hoverColor: hovercolor,
-      title: Text(
-        label,
-        style: TextStyle(color: color, fontSize: 15.0),
-      ),
-      onTap: () async {
-        await signOut();
-        await logOut();
-        Navigator.pushReplacement(context, path);
-      },
     );
   }
 }

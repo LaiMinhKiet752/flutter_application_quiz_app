@@ -4,8 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/screen/home.dart';
-import 'package:quiz_app/services/auth_fb.dart';
-import 'package:quiz_app/services/auth_gg.dart';
+import 'package:quiz_app/services/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
