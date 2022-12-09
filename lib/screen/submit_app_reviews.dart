@@ -14,7 +14,7 @@ class _SubmitAppReviewsState extends State<SubmitAppReviews> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               width: double.infinity,
@@ -24,7 +24,7 @@ class _SubmitAppReviewsState extends State<SubmitAppReviews> {
               ),
             ),
             SizedBox(
-              height: 50.0,
+              height: 100.0,
             ),
             Container(
               child: MaterialButton(

@@ -6,6 +6,7 @@ import 'package:quiz_app/services/localdb.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
+
 // ignore: body_might_complete_normally_nullable
 Future<User?> signInWithGoogle() async {
   final GoogleSignInAccount? googlesignInAccount = await googleSignIn.signIn();

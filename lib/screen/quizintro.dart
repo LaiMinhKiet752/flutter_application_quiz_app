@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/question.dart';
@@ -111,30 +112,33 @@ class _QuizIntroState extends State<QuizIntro> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(bottom: 40.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      widget.QuizName,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.w500,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextLiquidFill(
+                        text: '${widget.QuizName}',
+                        waveColor: Colors.blue,
+                        boxBackgroundColor: Colors.white,
+                        textStyle: TextStyle(
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        boxHeight: 100.0,
                       ),
                     ),
                     Image.asset(
-                      "assets/img/intro_banner.png",
+                      "assets/img/quiz_intro_image.jpg",
                       filterQuality: FilterQuality.high,
-                      fit: BoxFit.fill,
-                      height: 230.0,
+                      fit: BoxFit.contain,
+                      height: 200.0,
                       width: MediaQuery.of(context).size.width,
                     ),
                     Container(

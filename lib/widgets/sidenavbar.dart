@@ -1,9 +1,12 @@
+// ignore: unused_import
+import 'dart:developer';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
+import 'package:quiz_app/services/auth_fb.dart';
 import 'package:quiz_app/services/auth_gg.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
 
@@ -189,6 +192,7 @@ class SideNav extends StatelessWidget {
       ),
       onTap: () async {
         await signOut();
+        await logOut();
         Navigator.pushReplacement(context, path);
       },
     );

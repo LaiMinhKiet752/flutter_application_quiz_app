@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quiz_app/services/firedb.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 class QuizMoneyCheck {
@@ -25,6 +26,7 @@ class QuizMoneyCheck {
           .doc(QuizID)
           .set({"unlocked_at": DateTime.now()});
       print("QUIZ IS UNLOCKED NOW");
+      await FireDB.updateMoneyAfterBuyQuiz(QuizPrice);
       return true;
     } else {
       print("YOU NEED TO EARN EXTRA MONEY");
