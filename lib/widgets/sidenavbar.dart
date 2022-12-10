@@ -139,7 +139,7 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "Daily quiz",
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 Navigator.pushReplacement(
@@ -156,7 +156,7 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "Settings",
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 Navigator.pushReplacement(
@@ -173,7 +173,7 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "Rate us",
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 Navigator.pushReplacement(
@@ -190,7 +190,7 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "How to use",
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 Navigator.pushReplacement(
@@ -207,7 +207,7 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "Logout",
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 await signOutGoogleAndFacebook();

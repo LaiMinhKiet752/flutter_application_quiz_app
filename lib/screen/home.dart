@@ -142,7 +142,18 @@ class _HomeState extends State<Home> {
             child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Color.fromARGB(255, 251, 100, 90),
-                title: Text("KDV - Quiz Game"),
+                title: Container(
+                  margin: EdgeInsets.only(
+                    left: 30.0,
+                  ),
+                  child: Text(
+                    "KDV - Quiz Game",
+                    style: GoogleFonts.zenDots(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
               drawer: SideNav(
                 name: name,

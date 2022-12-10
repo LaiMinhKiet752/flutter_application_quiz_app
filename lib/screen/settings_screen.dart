@@ -324,10 +324,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: ListTile(
                       title: Container(
                         margin: EdgeInsets.only(
-                          left: 50.0,
+                          left: 65.0,
                         ),
                         child: Text(
-                          "Rate Us",
+                          "Help and FQA",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -335,7 +335,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       leading: Image.asset(
-                        "assets/img/star.png",
+                        "assets/img/help_and_fqa.png",
                         filterQuality: FilterQuality.high,
                         fit: BoxFit.cover,
                       ),

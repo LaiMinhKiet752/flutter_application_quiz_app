@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/question.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
 import 'package:quiz_app/services/localdb.dart';
@@ -127,8 +128,8 @@ class _QuizIntroState extends State<QuizIntro> {
                         loadDuration: const Duration(seconds: 5),
                         text: '${widget.QuizName}',
                         waveColor: Colors.blue,
-                        boxBackgroundColor: Colors.white,
-                        textStyle: TextStyle(
+                        boxBackgroundColor: Color.fromARGB(255, 255, 255, 255),
+                        textStyle: GoogleFonts.rubik(
                           fontSize: 35.0,
                           fontWeight: FontWeight.bold,
                         ),

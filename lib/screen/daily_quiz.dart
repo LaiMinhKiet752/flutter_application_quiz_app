@@ -74,7 +74,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     totalRepeatCount: 1,
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        "Have a nice day. \nWe hope you will have an enjoyable experience with our game. \nAnd today there will be four question packs related to four common topics: \n\nMath \nPhysics \nChemistry \nLiterature \n\nThere are also two more special question packs covering many areas of life. \nDon't wait any longer, let's play now!",
+                        "Have a nice day. \nWe hope you will have an enjoyable experience with our game. \nAnd today there will be four question packs related to four common topics: \n\nMath \nPhysics \nChemistry \nLiterature \n\nThere are also two more special question packs covering many areas of life. \n\nDon't wait any longer, let's play now!",
                         textStyle: GoogleFonts.secularOne(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
