@@ -358,8 +358,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.push(context,
+                    onPressed: () async {
+                      await Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     },
                   ),

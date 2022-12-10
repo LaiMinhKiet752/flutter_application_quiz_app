@@ -109,7 +109,18 @@ class _QuizIntroState extends State<QuizIntro> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
-        title: Text("KDV - Quiz Game"),
+        title: Container(
+          margin: EdgeInsets.only(
+            left: 30.0,
+          ),
+          child: Text(
+            "KDV - Quiz Game",
+            style: GoogleFonts.zenDots(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -130,10 +141,10 @@ class _QuizIntroState extends State<QuizIntro> {
                         waveColor: Colors.blue,
                         boxBackgroundColor: Color.fromARGB(255, 255, 255, 255),
                         textStyle: GoogleFonts.rubik(
-                          fontSize: 35.0,
+                          fontSize: 33.0,
                           fontWeight: FontWeight.bold,
                         ),
-                        boxHeight: 100.0,
+                        boxHeight: 120.0,
                       ),
                     ),
                     Image.asset(

@@ -35,30 +35,36 @@ class SideNav extends StatelessWidget {
           // padding: EdgeInsets.symmetric(horizontal: 20.0),
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Profile(
-                              name: name,
-                              proUrl: proUrl,
-                              rank: rank,
-                              level: level,
-                              money: money,
-                            )));
+              onTap: () async {
+                await Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(
+                      name: name,
+                      proUrl: proUrl,
+                      rank: rank,
+                      level: level,
+                      money: money,
+                    ),
+                  ),
+                );
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          radius: 30.0,
-                          backgroundImage: NetworkImage(proUrl),
+                          radius: 32.0,
+                          backgroundColor: Colors.yellow,
+                          child: CircleAvatar(
+                            radius: 30.0,
+                            backgroundImage: NetworkImage(proUrl),
+                          ),
                         ),
                         SizedBox(
                           width: 20.0,
@@ -142,7 +148,7 @@ class SideNav extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
-                Navigator.pushReplacement(
+                await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => DailyQuiz()));
@@ -159,7 +165,7 @@ class SideNav extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
-                Navigator.pushReplacement(
+                await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => SettingsScreen()));
@@ -176,7 +182,7 @@ class SideNav extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
-                Navigator.pushReplacement(
+                await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AppReviews()));
@@ -193,7 +199,7 @@ class SideNav extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
-                Navigator.pushReplacement(
+                await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => Home()));
@@ -211,7 +217,7 @@ class SideNav extends StatelessWidget {
               ),
               onTap: () async {
                 await signOutGoogleAndFacebook();
-                Navigator.pushReplacement(
+                await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => Login()));

@@ -108,8 +108,8 @@ class _AppReviewsState extends State<AppReviews> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Home()));
         },
       ),

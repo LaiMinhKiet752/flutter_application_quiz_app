@@ -75,9 +75,9 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+          onPressed: () async {
+            await Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Home()));
           },
         ),
         actions: [
@@ -227,7 +227,7 @@ class _ProfileState extends State<Profile> {
             ),
             Container(
               padding: EdgeInsets.only(top: 20.0, left: 10.0),
-              height: 350.0,
+              height: 335.0,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 64, 157, 2),
                 borderRadius: BorderRadius.only(
