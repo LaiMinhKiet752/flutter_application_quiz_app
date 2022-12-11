@@ -11,24 +11,6 @@ class AboutThem extends StatefulWidget {
 }
 
 class _AboutThemState extends State<AboutThem> {
-  tealContainer(String text) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.tealAccent,
-          style: BorderStyle.solid,
-          width: 2.0,
-        ),
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      padding: EdgeInsets.all(7.0),
-      child: Text(text,
-          style: GoogleFonts.openSans(
-            fontSize: 15.0,
-          )),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
