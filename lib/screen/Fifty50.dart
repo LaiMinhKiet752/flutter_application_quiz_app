@@ -74,7 +74,7 @@ class _Fifty50State extends State<Fifty50> {
                 height: 20.0,
               ),
               Text(
-                "${WrongOption[0]} AND ${WrongOption[1]}  IS INCORRECT OPTIONS",
+                "${WrongOption[0]} AND ${WrongOption[1]}  \nIS INCORRECT OPTIONS",
                 style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,

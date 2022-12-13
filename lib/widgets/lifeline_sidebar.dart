@@ -70,6 +70,63 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
     return ExpAvail;
   }
 
+  Audience() async {
+    if (await checkAudAvail()) {
+      setState(() {
+        audience = true;
+      });
+    } else {
+      setState(() {
+        audience = false;
+      });
+    }
+  }
+
+  ChangQuestion() async {
+    if (await checkChanAvail()) {
+      setState(() {
+        chanques = true;
+      });
+    } else {
+      setState(() {
+        chanques = false;
+      });
+    }
+  }
+
+  Fiftyfifty() async {
+    if (await checkFiftyAvail()) {
+      setState(() {
+        fifty50 = true;
+      });
+    } else {
+      setState(() {
+        fifty50 = false;
+      });
+    }
+  }
+
+  AskTheExp() async {
+    if (await checkExpAvail()) {
+      setState(() {
+        exp = true;
+      });
+    } else {
+      setState(() {
+        exp = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Audience();
+    ChangQuestion();
+    Fiftyfifty();
+    AskTheExp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -107,9 +164,6 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                         ),
                       );
                     } else {
-                      setState(() {
-                        audience = false;
-                      });
                       print("AUDIENCE POLL IS ALREADY USED");
                       return showDialog(
                         context: context,
@@ -166,7 +220,7 @@ class _LifeLine_DrawerState extends State<LifeLine_Drawer> {
                           MaterialPageRoute(
                               builder: (context) => Question(
                                   quizID: widget.quizID,
-                                  queMoney: widget.currentQueMon)));
+                                  queMoney: widget.currentQueMon * 2)));
                     } else {
                       setState(() {
                         chanques = false;
