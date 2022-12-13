@@ -105,7 +105,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   },
                 ),

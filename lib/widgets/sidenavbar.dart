@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/daily_quiz.dart';
 import 'package:quiz_app/screen/how_to_use.dart';
+import 'package:quiz_app/screen/list_friend_add.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
@@ -145,6 +146,40 @@ class SideNav extends StatelessWidget {
               hoverColor: Colors.white60,
               title: Text(
                 "Daily quiz",
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
+              ),
+              onTap: () async {
+                await Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => DailyQuiz()));
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.person_add,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Make a new friend",
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
+              ),
+              onTap: () async {
+                await Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AddNewFriend()));
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.play_arrow_rounded,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Play history",
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/edit_profile.dart';
 import 'package:quiz_app/screen/home.dart';
+import 'package:quiz_app/screen/list_friends.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 // ignore: must_be_immutable
@@ -81,13 +82,21 @@ class _ProfileState extends State<Profile> {
           },
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.share),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person_add),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListFriends()));
+            },
+            child: Container(
+              padding: EdgeInsets.only(
+                right: 10.0,
+              ),
+              child: Image.asset(
+                "assets/img/friend.png",
+                width: 40.0,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
