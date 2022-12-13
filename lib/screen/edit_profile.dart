@@ -18,7 +18,27 @@ class _Edit_ProfileState extends State<Edit_Profile> {
             Navigator.pop(context);
           },
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.settings),
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: ListTile(
+                    title: Text("Quên mật khẩu"),
+                    leading: Icon(Icons.password_rounded),
+                  ),
+                ),
+                PopupMenuItem(
+                  child: ListTile(
+                    title: Text("Đổi mật khẩu"),
+                    leading: Icon(Icons.change_circle),
+                  ),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: Container(
           padding: EdgeInsets.only(left: 16, top: 25, right: 16),

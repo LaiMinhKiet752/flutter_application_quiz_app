@@ -62,13 +62,11 @@ class AddMessageFireStore {
 class AddReviewFireStore {
   var logger = Logger();
   CollectionReference response =
-      FirebaseFirestore.instance.collection('review');
+      FirebaseFirestore.instance.collection('reviews');
   Future addReviewResponse(final review, final rating, final userName) async {
-    return response.add({
-      'review': review,
-      'rating': rating,
-      'User name':userName
-    }).then((value) {
+    return response
+        .add({'review': review, 'rating': rating, 'User name': userName}).then(
+            (value) {
       logger.d("Success");
       return true;
     }).catchError((error) {

@@ -47,6 +47,7 @@ class _HowToUseState extends State<HowToUse> {
                         style: GoogleFonts.openSans(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),

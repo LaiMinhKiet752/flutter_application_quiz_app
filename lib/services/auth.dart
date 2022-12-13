@@ -52,7 +52,7 @@ Future<void> signInWithFacebook(BuildContext context) async {
     await LocalDB.saveUrl(user.photoURL.toString());
     print(user);
   } on FirebaseAuthException catch (e) {
-    showSnackBar(context, e.message!); // Displaying the error message
+    showSnackBar(context, e.message!); 
   }
 }
 
