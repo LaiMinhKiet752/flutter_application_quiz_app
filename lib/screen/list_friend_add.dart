@@ -40,8 +40,9 @@ class AddNewFriendState extends State<AddNewFriend> {
         ),
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
         title: Text(
-          "Make a new friend",
+          "Friends around the world",
         ),
+        centerTitle: true,
       ),
       body: Container(
         padding: EdgeInsets.only(left: 5.0, right: 5.0),

@@ -66,6 +66,7 @@ class ListFriendsState extends State<ListFriends> {
         title: Text(
           "Friends List",
         ),
+        centerTitle: true,
       ),
       body: Container(
         padding: EdgeInsets.only(left: 5.0, right: 5.0),

@@ -25,10 +25,6 @@ class _HowToUseState extends State<HowToUse> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    "assets/img/welcome_user.jpg",
-                    filterQuality: FilterQuality.high,
-                  ),
                   SizedBox(
                     height: 50.0,
                   ),

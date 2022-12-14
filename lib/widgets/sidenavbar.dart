@@ -9,6 +9,7 @@ import 'package:quiz_app/screen/list_friend_add.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
+import 'package:quiz_app/screen/shop.dart';
 import 'package:quiz_app/services/auth.dart';
 
 // ignore: must_be_immutable
@@ -170,6 +171,23 @@ class SideNav extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddNewFriend()));
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Shop",
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
+              ),
+              onTap: () async {
+                await Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Shop()));
               },
             ),
             ListTile(
