@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 251, 100, 90),
         title: Text('Đăng Nhập'),
       ),
       backgroundColor: Colors.grey[300],

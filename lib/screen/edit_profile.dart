@@ -131,9 +131,18 @@ class _Edit_ProfileState extends State<Edit_Profile> {
               ),
               TextField(
                 decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    labelText: 'Address',
-                    hintText: 'Q.7, TP. HCM'),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  labelText: 'Address',
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  labelText: 'Phone',
+                ),
               ),
               SizedBox(
                 height: 30,

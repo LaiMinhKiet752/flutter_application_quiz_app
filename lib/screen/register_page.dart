@@ -18,6 +18,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Đăng Ký'),
+        backgroundColor: Color.fromARGB(255, 251, 100, 90),
       ),
       backgroundColor: Colors.grey[300],
       body: SafeArea(

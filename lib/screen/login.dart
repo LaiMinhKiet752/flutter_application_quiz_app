@@ -45,6 +45,7 @@ class _LoginState extends State<Login> {
             image: DecorationImage(
               image: AssetImage("assets/img/background.gif"),
               fit: BoxFit.cover,
+              filterQuality: FilterQuality.high,
             ),
           ),
           child: Center(
@@ -107,7 +108,7 @@ class _LoginState extends State<Login> {
                         minWidth: 150.0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)),
-                        color: Color.fromARGB(255, 255, 0, 166),
+                        color: Color.fromARGB(255, 3, 194, 3),
                         child: Text(
                           "Sign up",
                           style: TextStyle(

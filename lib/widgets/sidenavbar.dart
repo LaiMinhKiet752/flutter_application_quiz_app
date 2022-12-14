@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/daily_quiz.dart';
+import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/screen/how_to_use.dart';
 import 'package:quiz_app/screen/list_friend_add.dart';
 import 'package:quiz_app/screen/login.dart';
@@ -204,7 +205,7 @@ class SideNav extends StatelessWidget {
                 await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => DailyQuiz()));
+                        builder: (BuildContext context) => Home()));
               },
             ),
             ListTile(

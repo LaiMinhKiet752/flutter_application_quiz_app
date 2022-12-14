@@ -28,7 +28,8 @@ class _FriendDetailState extends State<FriendDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Thông Tin Chi Tiết'),
+        centerTitle: true,
+        title: Text('Friend details'),
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
       ),
       body: Column(
