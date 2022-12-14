@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/home.dart';
 import 'package:quiz_app/services/firedb.dart';
+import 'package:quiz_app/services/items_money_check.dart';
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -574,28 +575,22 @@ class _ShopState extends State<Shop> {
                   ],
                 ),
                 SizedBox(
-                  height: 60.0,
+                  height: 100.0,
                 ),
-                MaterialButton(
-                  color: Colors.redAccent,
-                  onPressed: () {},
-                  child: Container(
-                    width: 200.0,
-                    child: Row(
-                      children: [
-                        isBuy
-                            ? Text(
-                                "Tổng tiền: ${moneyAudiencePoll + moneyChangeQuestion + moneyFiftyFifty + moneyAskTheExpert}",
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white),
-                              )
-                            : Text(
-                                "Tổng tiền: 0",
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white),
-                              ),
-                      ],
-                    ),
+                Container(
+                  width: 300.0,
+                  height: 100.0,
+                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Total amount: ${moneyAudiencePoll + moneyChangeQuestion + moneyFiftyFifty + moneyAskTheExpert} Coins",
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -603,56 +598,88 @@ class _ShopState extends State<Shop> {
                 ),
                 MaterialButton(
                   color: Colors.blueAccent,
+                  minWidth: 200.0,
+                  height: 50.0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
                   onPressed: () async {
-                    await FireDB.updateMoneyAfterBuyItems(
-                        moneyAudiencePoll,
-                        moneyChangeQuestion,
-                        moneyFiftyFifty,
-                        moneyAskTheExpert);
-                    if (moneyAudiencePoll == 0 &&
-                        moneyChangeQuestion == 0 &&
-                        moneyFiftyFifty == 0 &&
-                        moneyAskTheExpert == 0) {
-                      print("Payment fail");
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Nothing to buy"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Shop()));
-                              },
-                              child: Text("OK"),
+                    ItemMoneyCheck.buyItem(
+                            Item1Price: moneyAudiencePoll,
+                            Item2Price: moneyChangeQuestion,
+                            Item3Price: moneyFiftyFifty,
+                            Item4Price: moneyAskTheExpert)
+                        .then(
+                      (value) async {
+                        if (value) {
+                          await FireDB.updateMoneyAfterBuyItems(
+                              moneyAudiencePoll,
+                              moneyChangeQuestion,
+                              moneyFiftyFifty,
+                              moneyAskTheExpert);
+                          if (moneyAudiencePoll == 0 &&
+                              moneyChangeQuestion == 0 &&
+                              moneyFiftyFifty == 0 &&
+                              moneyAskTheExpert == 0) {
+                            print("Payment fail");
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text("Nothing to buy"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Shop()));
+                                    },
+                                    child: Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            print("Payment success");
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text("Payment success"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Shop()));
+                                    },
+                                    child: Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                        } else {
+                          return showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(
+                                  "You don't have enough money to buy items!"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Shop()));
+                                  },
+                                  child: Text("OK"),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      print("Payment success");
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Payment success"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Shop()));
-                              },
-                              child: Text("OK"),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
+                          );
+                        }
+                      },
+                    );
                   },
                   child: Text(
                     "Xác nhận mua",
