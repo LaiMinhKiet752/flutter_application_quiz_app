@@ -70,6 +70,8 @@ class _TipsState extends State<Tips> {
             Image.asset(
               "assets/img/tips_question.png",
               filterQuality: FilterQuality.high,
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
             SizedBox(
               height: 100.0,

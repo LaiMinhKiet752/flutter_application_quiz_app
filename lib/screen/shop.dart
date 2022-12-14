@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screen/home.dart';
+import 'package:quiz_app/services/firedb.dart';
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -9,6 +10,197 @@ class Shop extends StatefulWidget {
 }
 
 class _ShopState extends State<Shop> {
+  int moneyAudiencePoll = 0;
+  int moneyChangeQuestion = 0;
+  int moneyFiftyFifty = 0;
+  int moneyAskTheExpert = 0;
+
+  int counterAudience = 0;
+  int counterChange = 0;
+  int counterFifty = 0;
+  int counterAsk = 0;
+
+  bool isBuy = true;
+  void _incrementMoneyAudience() {
+    setState(() {
+      moneyAudiencePoll = moneyAudiencePoll + 1000;
+    });
+  }
+
+  void _reduceMoneyAudience() {
+    setState(() {
+      if (moneyAudiencePoll == 0) {
+        moneyAudiencePoll = 0;
+      } else {
+        moneyAudiencePoll = moneyAudiencePoll - 1000;
+      }
+    });
+  }
+
+  void _incrementCounterAudience() {
+    setState(() {
+      counterAudience++;
+    });
+  }
+
+  void _reduceCounterAudience() {
+    setState(() {
+      if (counterAudience <= 0) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Cannot decrease more than 0"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          ),
+        );
+      } else {
+        counterAudience--;
+      }
+    });
+  }
+
+  void _incrementMoneyChange() {
+    setState(() {
+      moneyChangeQuestion = moneyChangeQuestion + 2000;
+    });
+  }
+
+  void _reduceMoneyChange() {
+    setState(() {
+      if (moneyChangeQuestion == 0) {
+        moneyChangeQuestion = 0;
+      } else {
+        moneyChangeQuestion = moneyChangeQuestion - 2000;
+      }
+    });
+  }
+
+  void _incrementCounterChange() {
+    setState(() {
+      counterChange++;
+    });
+  }
+
+  void _reduceCounterChange() {
+    setState(() {
+      if (counterChange <= 0) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Cannot decrease more than 0"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          ),
+        );
+      } else {
+        counterChange--;
+      }
+    });
+  }
+
+  void _incrementMoneyFifty() {
+    setState(() {
+      moneyFiftyFifty = moneyFiftyFifty + 3000;
+    });
+  }
+
+  void _reduceMoneyFifty() {
+    setState(() {
+      if (moneyFiftyFifty == 0) {
+        moneyFiftyFifty = 0;
+      } else {
+        moneyFiftyFifty = moneyFiftyFifty - 3000;
+      }
+    });
+  }
+
+  void _incrementCounterFifty() {
+    setState(() {
+      counterFifty++;
+    });
+  }
+
+  void _reduceCounterFifty() {
+    setState(() {
+      if (counterFifty <= 0) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Cannot decrease more than 0"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          ),
+        );
+      } else {
+        counterFifty--;
+      }
+    });
+  }
+
+  void _incrementMoneyAsk() {
+    setState(() {
+      moneyAskTheExpert = moneyAskTheExpert + 5000;
+    });
+  }
+
+  void _reduceMoneyAsk() {
+    setState(() {
+      if (moneyAskTheExpert == 0) {
+        moneyAskTheExpert = 0;
+      } else {
+        moneyAskTheExpert = moneyAskTheExpert - 5000;
+      }
+    });
+  }
+
+  void _incrementCounterAsk() {
+    setState(() {
+      counterAsk++;
+    });
+  }
+
+  void _reduceCounterAsk() {
+    setState(() {
+      if (counterAsk <= 0) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Cannot decrease more than 0"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          ),
+        );
+      } else {
+        counterAsk--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,34 +264,48 @@ class _ShopState extends State<Shop> {
                                 Icons.people,
                                 color: Colors.red,
                               ),
-                              Text("Conis: 5000"),
+                              Text("Conis: 1000"),
                               SizedBox(
                                 height: 20.0,
                               ),
                               Container(
                                 child: Row(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _reduceCounterAudience();
+                                        _reduceMoneyAudience();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/reduce.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage: AssetImage(
+                                              "assets/img/reduce.png"),
+                                        ),
                                       ),
                                     ),
                                     Expanded(child: Container()),
-                                    Text("0"),
+                                    isBuy
+                                        ? Text('$counterAudience')
+                                        : Text("0"),
                                     Expanded(child: Container()),
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _incrementCounterAudience();
+                                        _incrementMoneyAudience();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/add.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              AssetImage("assets/img/add.png"),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -143,34 +349,46 @@ class _ShopState extends State<Shop> {
                                 Icons.change_circle,
                                 color: Colors.red,
                               ),
-                              Text("Conis: 5000"),
+                              Text("Conis: 2000"),
                               SizedBox(
                                 height: 20.0,
                               ),
                               Container(
                                 child: Row(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _reduceCounterChange();
+                                        _reduceMoneyChange();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/reduce.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage: AssetImage(
+                                              "assets/img/reduce.png"),
+                                        ),
                                       ),
                                     ),
                                     Expanded(child: Container()),
-                                    Text("0"),
+                                    isBuy ? Text('$counterChange') : Text("0"),
                                     Expanded(child: Container()),
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _incrementCounterChange();
+                                        _incrementMoneyChange();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/add.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              AssetImage("assets/img/add.png"),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -220,34 +438,46 @@ class _ShopState extends State<Shop> {
                                 Icons.star_half,
                                 color: Colors.red,
                               ),
-                              Text("Conis: 5000"),
+                              Text("Conis: 3000"),
                               SizedBox(
                                 height: 20.0,
                               ),
                               Container(
                                 child: Row(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _reduceCounterFifty();
+                                        _reduceMoneyFifty();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/reduce.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage: AssetImage(
+                                              "assets/img/reduce.png"),
+                                        ),
                                       ),
                                     ),
                                     Expanded(child: Container()),
-                                    Text("0"),
+                                    isBuy ? Text('$counterFifty') : Text("0"),
                                     Expanded(child: Container()),
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _incrementCounterFifty();
+                                        _incrementMoneyFifty();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/add.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              AssetImage("assets/img/add.png"),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -298,27 +528,39 @@ class _ShopState extends State<Shop> {
                               Container(
                                 child: Row(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _reduceCounterAsk();
+                                        _reduceMoneyAsk();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/reduce.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage: AssetImage(
+                                              "assets/img/reduce.png"),
+                                        ),
                                       ),
                                     ),
                                     Expanded(child: Container()),
-                                    Text("0"),
+                                    isBuy ? Text('$counterAsk') : Text("0"),
                                     Expanded(child: Container()),
-                                    CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: Colors.transparent,
+                                    GestureDetector(
+                                      onTap: () {
+                                        _incrementCounterAsk();
+                                        _incrementMoneyAsk();
+                                      },
                                       child: CircleAvatar(
-                                        radius: 18.0,
+                                        radius: 20.0,
                                         backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            AssetImage("assets/img/add.png"),
+                                        child: CircleAvatar(
+                                          radius: 18.0,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              AssetImage("assets/img/add.png"),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -337,9 +579,23 @@ class _ShopState extends State<Shop> {
                 MaterialButton(
                   color: Colors.redAccent,
                   onPressed: () {},
-                  child: Text(
-                    "Tổng tiền: 0 Coins",
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  child: Container(
+                    width: 200.0,
+                    child: Row(
+                      children: [
+                        isBuy
+                            ? Text(
+                                "Tổng tiền: ${moneyAudiencePoll + moneyChangeQuestion + moneyFiftyFifty + moneyAskTheExpert}",
+                                style: TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              )
+                            : Text(
+                                "Tổng tiền: 0",
+                                style: TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -349,7 +605,55 @@ class _ShopState extends State<Shop> {
                   color: Colors.blueAccent,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FireDB.updateMoneyAfterBuyItems(
+                        moneyAudiencePoll,
+                        moneyChangeQuestion,
+                        moneyFiftyFifty,
+                        moneyAskTheExpert);
+                    if (moneyAudiencePoll == 0 &&
+                        moneyChangeQuestion == 0 &&
+                        moneyFiftyFifty == 0 &&
+                        moneyAskTheExpert == 0) {
+                      print("Payment fail");
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Nothing to buy"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Shop()));
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      print("Payment success");
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Payment success"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Shop()));
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
                   child: Text(
                     "Xác nhận mua",
                     style: TextStyle(fontSize: 20.0, color: Colors.white),

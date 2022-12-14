@@ -31,7 +31,6 @@ Future<User?> signInWithGoogle() async {
   await LocalDB.saveUserID(user.uid);
   await LocalDB.saveName(user.displayName.toString());
   await LocalDB.saveUrl(user.photoURL.toString());
-
   print(user);
 }
 
@@ -52,10 +51,9 @@ Future<void> signInWithFacebook(BuildContext context) async {
     await LocalDB.saveUrl(user.photoURL.toString());
     print(user);
   } on FirebaseAuthException catch (e) {
-    showSnackBar(context, e.message!); 
+    showSnackBar(context, e.message!);
   }
 }
-
 
 Future<String> signOutGoogleAndFacebook() async {
   if (googleSignIn.currentUser != null) {
@@ -72,5 +70,3 @@ Future<String> signOutGoogleAndFacebook() async {
   }
   return "SUCCESS";
 }
-
-
