@@ -575,7 +575,7 @@ class _ShopState extends State<Shop> {
                   ],
                 ),
                 SizedBox(
-                  height: 100.0,
+                  height: 50.0,
                 ),
                 Container(
                   width: 300.0,
@@ -600,6 +600,7 @@ class _ShopState extends State<Shop> {
                   color: Colors.blueAccent,
                   minWidth: 200.0,
                   height: 50.0,
+                  elevation: 5.0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
                   onPressed: () async {

@@ -66,7 +66,9 @@ class _AppReviewsState extends State<AppReviews> {
           ),
         ),
         // your app's logo?
-        image: Image.asset("assets/img/logo_quiz.png"),
+        image: Image.asset(
+          "assets/img/logo_quiz.png",
+        ),
         submitButtonText: 'Submit',
         commentHint: "Enter your review",
         onCancelled: () => print('cancelled'),

@@ -26,7 +26,7 @@ class _HowToUseState extends State<HowToUse> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 50.0,
+                    height: 20.0,
                   ),
                   Container(
                     width: 200.0,

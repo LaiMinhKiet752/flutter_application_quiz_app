@@ -12,9 +12,10 @@ import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
 import 'package:quiz_app/screen/shop.dart';
 import 'package:quiz_app/services/auth.dart';
+import 'package:quiz_app/services/home_fire.dart';
 
 // ignore: must_be_immutable
-class SideNav extends StatelessWidget {
+class SideNav extends StatefulWidget {
   String name;
   String money;
   String rank;
@@ -27,6 +28,27 @@ class SideNav extends StatelessWidget {
       required this.rank,
       required this.proUrl,
       required this.level});
+
+  @override
+  State<SideNav> createState() => _SideNavState();
+}
+
+class _SideNavState extends State<SideNav> {
+  late List history;
+
+  gethistory() async {
+    await HomeFire.gethistory().then((returned_history) {
+      setState(() {
+        history = returned_history;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    gethistory();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +65,11 @@ class SideNav extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => Profile(
-                      name: name,
-                      proUrl: proUrl,
-                      rank: rank,
-                      level: level,
-                      money: money,
+                      name: widget.name,
+                      proUrl: widget.proUrl,
+                      rank: widget.rank,
+                      level: widget.level,
+                      money: widget.money,
                     ),
                   ),
                 );
@@ -66,7 +88,7 @@ class SideNav extends StatelessWidget {
                           backgroundColor: Colors.yellow,
                           child: CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: NetworkImage(proUrl),
+                            backgroundImage: NetworkImage(widget.proUrl),
                           ),
                         ),
                         SizedBox(
@@ -76,7 +98,7 @@ class SideNav extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              name,
+                              widget.name,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
@@ -87,7 +109,7 @@ class SideNav extends StatelessWidget {
                               height: 10.0,
                             ),
                             Text(
-                              "Coins: $money",
+                              "Coins: ${widget.money}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -114,7 +136,7 @@ class SideNav extends StatelessWidget {
                           repeatForever: true,
                           animatedTexts: [
                             FadeAnimatedText(
-                              '$rank th Rank',
+                              '${widget.rank} th Rank',
                               textStyle: TextStyle(
                                 color: Colors.white,
                                 fontSize: 19.0,
@@ -193,19 +215,25 @@ class SideNav extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.play_arrow_rounded,
+                Icons.history,
                 color: Colors.white,
               ),
               hoverColor: Colors.white60,
               title: Text(
-                "Play history",
+                "Purchase history",
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 await Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => HistoryScreen()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => HistoryScreen(
+                      code: (history[0])["code_orders"],
+                      buy_at: (history[0])["buy_at"],
+                      money: (history[0]["coins"]),
+                    ),
+                  ),
+                );
               },
             ),
             ListTile(

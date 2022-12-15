@@ -20,19 +20,21 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
         title: Text('Đăng Nhập'),
       ),
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color.fromARGB(255, 183, 209, 135),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/img/logo_quiz.png",
-                  width: 300.0,
-                ),
-                const SizedBox(
-                  height: 25,
+                Container(
+                  width: 200.0,
+                  height: 200.0,
+                  child: Image.asset(
+                    "assets/img/logo_quiz.png",
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 //Hello again
                 const Text(

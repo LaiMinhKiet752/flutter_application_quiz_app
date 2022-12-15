@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
               children: [
                 Container(
                   height: 300.0,
-                  width: double.infinity,
+                  width: 300.0,
                   child: Image.asset(
                     "assets/img/logo_quiz.png",
                     filterQuality: FilterQuality.high,
