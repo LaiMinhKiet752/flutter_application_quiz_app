@@ -9,6 +9,7 @@ import 'package:quiz_app/screen/how_to_use.dart';
 import 'package:quiz_app/screen/list_rank.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
+import 'package:quiz_app/screen/recharge.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
 import 'package:quiz_app/screen/shop.dart';
 import 'package:quiz_app/services/auth.dart';
@@ -189,7 +190,7 @@ class _SideNavState extends State<SideNav> {
               ),
               hoverColor: Colors.white60,
               title: Text(
-                "Your Friends",
+                "Your friends",
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
@@ -214,6 +215,23 @@ class _SideNavState extends State<SideNav> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => Shop()));
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.attach_money_outlined,
+                color: Colors.white,
+              ),
+              hoverColor: Colors.white60,
+              title: Text(
+                "Recharge",
+                style: TextStyle(color: Colors.white, fontSize: 17.0),
+              ),
+              onTap: () async {
+                await Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Recharge()));
               },
             ),
             ListTile(

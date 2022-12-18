@@ -683,7 +683,7 @@ class _ShopState extends State<Shop> {
                     );
                   },
                   child: Text(
-                    "Xác nhận mua",
+                    "Confirm",
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
                 ),

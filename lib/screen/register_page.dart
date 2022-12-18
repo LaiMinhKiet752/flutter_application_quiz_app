@@ -20,7 +20,21 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Đăng Ký'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Color.fromARGB(255, 251, 100, 90),
+        title: Text(
+          "Sign up",
+          style: TextStyle(
+            fontSize: 25.0,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0.0,
       ),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -29,12 +43,14 @@ class _RegisterState extends State<Register> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.android,
-                  size: 100,
-                ),
-                const SizedBox(
-                  height: 25,
+                Container(
+                  height: 200.0,
+                  width: 200.0,
+                  child: Image.asset(
+                    "assets/img/logo_quiz.png",
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 //Hello again
                 const Text(
@@ -225,13 +241,16 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Not a member? ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15.0),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -242,7 +261,7 @@ class _RegisterState extends State<Register> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[400],
-                          fontSize: 12,
+                          fontSize: 17.0,
                         ),
                       ),
                     ),

@@ -20,7 +20,21 @@ class _LoginPageState extends State<LoginPage> {
     final _auth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Đăng Nhập'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Color.fromARGB(255, 251, 100, 90),
+        title: Text(
+          "Sign in",
+          style: TextStyle(
+            fontSize: 25.0,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0.0,
       ),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -29,9 +43,14 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.android,
-                  size: 100,
+                Container(
+                  height: 200.0,
+                  width: 200.0,
+                  child: Image.asset(
+                    "assets/img/logo_quiz.png",
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 const SizedBox(
                   height: 25,
@@ -149,13 +168,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Not a member? ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14.0),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -177,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[400],
-                          fontSize: 12,
+                          fontSize: 17.0,
                         ),
                       ),
                     ),

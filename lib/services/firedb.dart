@@ -62,6 +62,21 @@ class FireDB {
     }
   }
 
+  static updateMoneyAfterRecharge(int amount) async {
+    final FirebaseAuth _myauth = FirebaseAuth.instance;
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(_myauth.currentUser!.uid)
+        .get()
+        .then((value) async {
+      await LocalDB.saveMoney((value.data()!["money"] + amount).toString());
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(_myauth.currentUser!.uid)
+          .update({"money": value.data()!["money"] + amount});
+    });
+  }
+
   static updateMoneyAfterBuyItems(
       int item1, int item2, int item3, int item4) async {
     final FirebaseAuth _myauth = FirebaseAuth.instance;

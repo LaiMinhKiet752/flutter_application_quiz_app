@@ -25,13 +25,13 @@ class _Edit_ProfileState extends State<Edit_Profile> {
               return [
                 PopupMenuItem(
                   child: ListTile(
-                    title: Text("Quên mật khẩu"),
+                    title: Text("Change Password"),
                     leading: Icon(Icons.password_rounded),
                   ),
                 ),
                 PopupMenuItem(
                   child: ListTile(
-                    title: Text("Đổi mật khẩu"),
+                    title: Text("Forget Password"),
                     leading: Icon(Icons.change_circle),
                   ),
                 ),
