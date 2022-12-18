@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(30.0)),
                         color: Color.fromARGB(255, 191, 0, 255),
                         child: Text(
-                          "Sign in",
+                          "Sign up",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
@@ -110,7 +110,7 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(30.0)),
                         color: Color.fromARGB(255, 3, 194, 3),
                         child: Text(
-                          "Sign up",
+                          "Sign in",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,

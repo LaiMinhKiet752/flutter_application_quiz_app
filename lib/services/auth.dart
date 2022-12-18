@@ -61,12 +61,12 @@ Future<String> signOutGoogleAndFacebook() async {
     await googleSignIn.signOut();
     await _auth.signOut();
     await LocalDB.saveUserID("null");
-    print("Google User Signed Out");
+    print("Signed Out");
   } else {
     await facebookSignIn.logOut();
     await _auth.signOut();
     await LocalDB.saveUserID("null");
-    print("Facebook User Signed Out");
+    print("Signed Out");
   }
   return "SUCCESS";
 }

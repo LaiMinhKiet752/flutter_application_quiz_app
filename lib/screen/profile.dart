@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/screen/edit_profile.dart';
 import 'package:quiz_app/screen/home.dart';
-import 'package:quiz_app/screen/list_friends.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 // ignore: must_be_immutable
@@ -27,11 +26,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  var colors = [
-    Color.fromARGB(255, 255, 230, 0),
-    Color.fromARGB(255, 0, 225, 255),
-    Color.fromARGB(255, 255, 153, 0),
-  ];
   late List<QueryDocumentSnapshot<Map<String, dynamic>>> LeadersList;
   getLeaders() async {
     await FirebaseFirestore.instance
@@ -81,24 +75,6 @@ class _ProfileState extends State<Profile> {
                 context, MaterialPageRoute(builder: (context) => Home()));
           },
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ListFriends()));
-            },
-            child: Container(
-              padding: EdgeInsets.only(
-                right: 10.0,
-              ),
-              child: Image.asset(
-                "assets/img/friend.png",
-                width: 40.0,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
         backgroundColor: Color.fromARGB(255, 251, 100, 90),
         title: Text(
           "Profile",
@@ -231,72 +207,60 @@ class _ProfileState extends State<Profile> {
                 Image.asset("assets/img/award.png"),
               ],
             ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 20.0, left: 10.0),
-              height: 335.0,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 64, 157, 2),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50.0),
-                  topRight: Radius.circular(50.0),
-                ),
-              ),
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                LeadersList[index].data()["photoUrl"]),
-                            radius: 20.0,
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Text(
-                            LeadersList[index]
-                                        .data()["name"]
-                                        .toString()
-                                        .length >=
-                                    12
-                                ? "${(LeadersList[index].data()["name"]).toString().substring(0, 12)}..."
-                                : (LeadersList[index].data()["name"])
-                                    .toString(),
-                            style: TextStyle(
-                              color: colors[index],
-                              fontWeight: FontWeight.bold,
+            Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(20),
+                  child: SizedBox(
+                    height: 300,
+                    child: ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      LeadersList[index].data()["photoUrl"]),
+                                ),
+                                SizedBox(
+                                  width: 10.0,
+                                ),
+                                Text(
+                                  LeadersList[index]
+                                              .data()["name"]
+                                              .toString()
+                                              .length >=
+                                          12
+                                      ? "${(LeadersList[index].data()["name"]).toString().substring(0, 12)}..."
+                                      : (LeadersList[index].data()["name"])
+                                          .toString(),
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      leading: Text(
-                        "#${index + 1}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      trailing: Text(
-                        "Coins: ${money_generator(int.parse(LeadersList[index].data()["money"].toString()))}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => Divider(
-                        thickness: 2.0,
-                        color: Colors.black26,
-                        indent: 15.0,
-                        endIndent: 15.0,
-                      ),
-                  itemCount: LeadersList.length),
+                            leading: Text(
+                              "#${index + 1}",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            trailing: Text(
+                                "Coins.${money_generator(int.parse(LeadersList[index].data()["money"].toString()))}",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          );
+                        },
+                        separatorBuilder: (context, index) => Divider(
+                              thickness: 1,
+                              color: Colors.purple,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                        itemCount: LeadersList.length),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

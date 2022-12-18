@@ -6,7 +6,7 @@ import 'package:quiz_app/screen/app_reviews.dart';
 import 'package:quiz_app/screen/daily_quiz.dart';
 import 'package:quiz_app/screen/history_screen.dart';
 import 'package:quiz_app/screen/how_to_use.dart';
-import 'package:quiz_app/screen/list_friend_add.dart';
+import 'package:quiz_app/screen/list_rank.dart';
 import 'package:quiz_app/screen/login.dart';
 import 'package:quiz_app/screen/profile.dart';
 import 'package:quiz_app/screen/settings_screen.dart';
@@ -52,6 +52,7 @@ class _SideNavState extends State<SideNav> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.name);
     return Drawer(
       width: 270.0,
       child: Material(
@@ -88,7 +89,9 @@ class _SideNavState extends State<SideNav> {
                           backgroundColor: Colors.yellow,
                           child: CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: NetworkImage(widget.proUrl),
+                            backgroundImage: widget.proUrl.isNotEmpty
+                                ? NetworkImage(widget.proUrl)
+                                : null,
                           ),
                         ),
                         SizedBox(
@@ -98,7 +101,7 @@ class _SideNavState extends State<SideNav> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.name,
+                              "${widget.name}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
@@ -181,19 +184,19 @@ class _SideNavState extends State<SideNav> {
             ),
             ListTile(
               leading: Icon(
-                Icons.person_add,
+                Icons.person,
                 color: Colors.white,
               ),
               hoverColor: Colors.white60,
               title: Text(
-                "Make a new friend",
+                "Your Friends",
                 style: TextStyle(color: Colors.white, fontSize: 17.0),
               ),
               onTap: () async {
                 await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => AddNewFriend()));
+                        builder: (BuildContext context) => RankList()));
               },
             ),
             ListTile(

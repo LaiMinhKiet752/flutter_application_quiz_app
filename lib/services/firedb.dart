@@ -20,7 +20,7 @@ class FireDB {
         "rank": "NA",
         "level": "0"
       }).then((value) async {
-        await LocalDB.saveMoney("10000");
+        await LocalDB.saveMoney("50000");
         await LocalDB.saveRank("NA");
         await LocalDB.saveLevel("0");
         print("User Registered Successfully");
@@ -92,7 +92,7 @@ class FireDB {
         .then((value) async {
       user = value.data().toString();
       print(user);
-      await LocalDB.saveMoney("10000");
+      await LocalDB.saveMoney("50000");
       await LocalDB.saveRank("100");
       await LocalDB.saveLevel("1");
     });

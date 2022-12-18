@@ -262,7 +262,7 @@ class _QuestionState extends State<Question> {
                     optALocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 10),
+                    Duration(seconds: 5),
                     () async {
                       if (questionModel.option1 ==
                           questionModel.correctAnswer) {
@@ -325,7 +325,7 @@ class _QuestionState extends State<Question> {
                     optBLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 10),
+                    Duration(seconds: 5),
                     () async {
                       if (questionModel.option2 ==
                           questionModel.correctAnswer) {
@@ -388,7 +388,7 @@ class _QuestionState extends State<Question> {
                     optCLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 10),
+                    Duration(seconds: 5),
                     () async {
                       if (questionModel.option3 ==
                           questionModel.correctAnswer) {
@@ -451,7 +451,7 @@ class _QuestionState extends State<Question> {
                     optDLocked = true;
                   });
                   Future.delayed(
-                    Duration(seconds: 10),
+                    Duration(seconds: 5),
                     () async {
                       if (questionModel.option4 ==
                           questionModel.correctAnswer) {

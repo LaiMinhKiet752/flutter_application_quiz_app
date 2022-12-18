@@ -37,25 +37,25 @@ class _AudiencePollState extends State<AudiencePoll> {
     Future.delayed(Duration(seconds: 5), () {
       setState(() {
         if (widget.opt1 == widget.correctAns) {
-          opt1Votes = Random().nextInt(50) + 50;
+          opt1Votes = Random().nextInt(80) + 20;
         } else {
           opt1Votes = Random().nextInt(30);
         }
 
         if (widget.opt2 == widget.correctAns) {
-          opt2Votes = Random().nextInt(50) + 50;
+          opt2Votes = Random().nextInt(80) + 20;
         } else {
           opt2Votes = Random().nextInt(30);
         }
 
         if (widget.opt3 == widget.correctAns) {
-          opt3Votes = Random().nextInt(50) + 50;
+          opt3Votes = Random().nextInt(80) + 20;
         } else {
           opt3Votes = Random().nextInt(30);
         }
 
         if (widget.opt4 == widget.correctAns) {
-          opt4Votes = Random().nextInt(50) + 50;
+          opt4Votes = Random().nextInt(80) + 20;
         } else {
           opt4Votes = Random().nextInt(30);
         }
