@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screen/home.dart';
 
 class RequestFriend extends StatefulWidget {
   const RequestFriend({super.key});
@@ -18,8 +19,9 @@ class _RequestFriendState extends State<RequestFriend> {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
+            onPressed: () async {
+              await Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Home()));
             },
           ),
           backgroundColor: Color.fromARGB(255, 251, 100, 90),
@@ -68,12 +70,14 @@ class _RequestFriendState extends State<RequestFriend> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text('Thông báo'),
-                              content: Text('Xác nhận kết bạn'),
+                              title: Text('Notify'),
+                              content: Text('Friend Confirmation?'),
                               actions: [
                                 TextButton(
-                                    onPressed: () {
-                                      _firestore.collection('friend').add({
+                                    onPressed: () async {
+                                      await _firestore
+                                          .collection('friend')
+                                          .add({
                                         'friend_1': (users[index])['friend_1']
                                             .toString(),
                                         'friend_2': (users[index])['friend_2']
@@ -85,7 +89,9 @@ class _RequestFriendState extends State<RequestFriend> {
                                             (users[index])['friend_name_2']
                                                 .toString(),
                                       });
-                                      _firestore.collection('friend').add({
+                                      await _firestore
+                                          .collection('friend')
+                                          .add({
                                         'friend_1': (users[index])['friend_2']
                                             .toString(),
                                         'friend_2': (users[index])['friend_1']
@@ -97,22 +103,35 @@ class _RequestFriendState extends State<RequestFriend> {
                                             (users[index])['friend_name_1']
                                                 .toString(),
                                       });
-                                      _firestore
+
+                                      await _firestore
                                           .runTransaction((transaction) async {
                                         await transaction.delete(snapshot
                                             .data!.docs[index].reference);
                                       });
                                       Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      await Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RequestFriend()));
                                     },
                                     child: Text('Accept')),
                                 TextButton(
-                                    onPressed: () {
-                                      _firestore
+                                    onPressed: () async {
+                                      await _firestore
                                           .runTransaction((transaction) async {
                                         await transaction.delete(snapshot
                                             .data!.docs[index].reference);
                                       });
                                       Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      await Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RequestFriend()));
                                     },
                                     child: Text('Delete')),
                               ],

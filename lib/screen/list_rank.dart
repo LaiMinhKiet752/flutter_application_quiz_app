@@ -121,8 +121,8 @@ class _RankListState extends State<RankList> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                          title: Text('Thông báo'),
-                                          content: Text('Xác nhận kết bạn'),
+                                          title: Text('Notify'),
+                                          content: Text('Friend Confirmation?'),
                                           actions: [
                                             TextButton(
                                               onPressed: () {
@@ -145,7 +145,7 @@ class _RankListState extends State<RankList> {
                                                             .toString(),
                                                     'content': (tempUser['name']
                                                             .toString() +
-                                                        ' yêu cầu kết bạn'),
+                                                        ' friend request'),
                                                   });
                                                 }
                                                 Navigator.pop(context);

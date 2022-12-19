@@ -114,26 +114,6 @@ class _FriendDetailState extends State<FriendDetail> {
                 SizedBox(
                   height: 20,
                 ),
-
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        color: Colors.purple[900],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Center(
-                      child: Text(
-                        "Back to Home",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
