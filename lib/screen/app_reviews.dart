@@ -47,7 +47,7 @@ class _AppReviewsState extends State<AppReviews> {
     final _dialog = Form(
       key: formKey,
       child: RatingDialog(
-        initialRating: 1.0,
+        initialRating: 0,
         title: Text(
           'Rating KDV Quiz',
           textAlign: TextAlign.center,

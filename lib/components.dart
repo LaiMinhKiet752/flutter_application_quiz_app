@@ -48,7 +48,8 @@ class AddMessageFireStore {
       'last name': lastName,
       'email': email,
       'phone number': phoneNumber,
-      'message': message
+      'message': message,
+      'created_at': DateTime.now()
     }).then((value) {
       logger.d("Success");
       return true;
@@ -64,9 +65,12 @@ class AddReviewFireStore {
   CollectionReference response =
       FirebaseFirestore.instance.collection('reviews');
   Future addReviewResponse(final review, final rating, final userName) async {
-    return response
-        .add({'review': review, 'rating': rating, 'User name': userName}).then(
-            (value) {
+    return response.add({
+      'user name': userName,
+      'review': review,
+      'rating': rating,
+      'created_at': DateTime.now()
+    }).then((value) {
       logger.d("Success");
       return true;
     }).catchError((error) {

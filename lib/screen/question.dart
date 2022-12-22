@@ -21,7 +21,6 @@ class Question extends StatefulWidget {
 
 class _QuestionState extends State<Question> {
   QuestionModel questionModel = new QuestionModel();
-  AudioPlayer audioPlayer = AudioPlayer();
   genQue() async {
     await QuizQueCreator.genQuizQue(widget.quizID, widget.queMoney)
         .then((queData) {
@@ -51,8 +50,6 @@ class _QuestionState extends State<Question> {
   int maxSeconds = 30;
   int seconds = 30;
   Timer? timer;
-
-  final player = AudioCache();
 
   QueTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (_) {

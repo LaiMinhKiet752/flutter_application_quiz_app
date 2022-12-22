@@ -17,28 +17,28 @@ class _ContactUsState extends State<ContactUs> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        body: ListView(
-          children: [
-            Wrap(
-              runSpacing: 20.0,
-              spacing: 20.0,
-              alignment: WrapAlignment.center,
-              children: [
-                SansBold(
-                  text: "Contact Us",
-                  size: 35.0,
-                ),
-                Form(
-                  key: formKey,
-                  child: Container(
+        body: Form(
+          key: formKey,
+          child: ListView(
+            children: [
+              Wrap(
+                runSpacing: 20.0,
+                spacing: 20.0,
+                alignment: WrapAlignment.center,
+                children: [
+                  Container(
                     child: Column(
                       children: [
+                        SansBold(
+                          text: "Contact Us",
+                          size: 35.0,
+                        ),
                         TextForm(
                           controller: _firstNameController,
                           validator: (text) {
@@ -88,43 +88,48 @@ class _ContactUsState extends State<ContactUs> {
                       ],
                     ),
                   ),
-                ),
-                MaterialButton(
-                  elevation: 10.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  height: 60.0,
-                  minWidth: widthDevice / 3.5,
-                  color: Colors.tealAccent,
-                  child: Text(
-                    "Send",
-                    style: GoogleFonts.arimo(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
+                  MaterialButton(
+                    elevation: 10.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
+                    height: 60.0,
+                    minWidth: widthDevice / 3.5,
+                    color: Color.fromARGB(255, 251, 100, 90),
+                    child: Text(
+                      "Send",
+                      style: GoogleFonts.arimo(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () async {
+                      logger.d(_firstNameController.text);
+                      final addData = new AddMessageFireStore();
+                      if (await formKey.currentState!.validate()) {
+                        await addData.addMessageResponse(
+                            _firstNameController.text,
+                            _lastNameController.text,
+                            _emailController.text,
+                            _phoneController.text,
+                            _messageController.text);
+                        DialogError(context, "Message sent successfully");
+                        formKey.currentState!.reset();
+                        _firstNameController.clear();
+                        _lastNameController.clear();
+                        _emailController.clear();
+                        _phoneController.clear();
+                        _messageController.clear();
+                      } else {
+                        DialogError(context, "Message failed to sent");
+                      }
+                    },
                   ),
-                  onPressed: () async {
-                    logger.d(_firstNameController.text);
-                    final addData = new AddMessageFireStore();
-                    if (await formKey.currentState!.validate()) {
-                      await addData.addMessageResponse(
-                          _firstNameController.text,
-                          _lastNameController.text,
-                          _emailController.text,
-                          _phoneController.text,
-                          _messageController.text);
-                      DialogError(context, "Message sent successfully");
-                      formKey.currentState!.reset();
-                    } else {
-                      DialogError(context, "Message failed to sent");
-                    }
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-          ],
+                ],
+              ),
+              SizedBox(height: 20.0),
+            ],
+          ),
         ),
       ),
     );

@@ -56,22 +56,18 @@ Future<void> signInWithFacebook(BuildContext context) async {
 }
 
 Future<String> signOutGoogleAndFacebook() async {
-  // if (googleSignIn.currentUser != null) {
-  //   await googleSignIn.disconnect();
-  //   await googleSignIn.signOut();
-  //   await _auth.signOut();
-  //   await LocalDB.saveUserID("null");
-  //   print("Signed Out");
-  // } else {
-  //   await facebookSignIn.logOut();
-  //   await _auth.signOut();
-  //   await LocalDB.saveUserID("null");
-  //   print("Signed Out");
-  // }
+  if (googleSignIn.currentUser != null) {
+    await googleSignIn.disconnect();
+    await googleSignIn.signOut();
+    await _auth.signOut();
+    await LocalDB.saveUserID("null");
+    print("Signed Out");
+  } else {
+    // await facebookSignIn.logOut();
+    await _auth.signOut();
+    await LocalDB.saveUserID("null");
+    print("Signed Out");
+  }
 
-  await googleSignIn.disconnect();
-  await googleSignIn.signOut();
-  await _auth.signOut();
-  await LocalDB.saveUserID("null");
   return "SUCCESS";
 }

@@ -143,9 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                     MaterialPageRoute(
                                         builder: (context) => Home()));
                               } else {
-                                final snackBar = SnackBar(
-                                    content:
-                                        Text('Email hoặc mật khẩu không đúng'));
+                                final snackBar = SnackBar(content: Text(''));
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
                               }
