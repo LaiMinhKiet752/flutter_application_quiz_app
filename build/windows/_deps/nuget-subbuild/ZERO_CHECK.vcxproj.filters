@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\FlutterInSchool\DoAn\quiz_app\build\windows\_deps\nuget-subbuild\CMakeFiles\fbffc5d226339a15f3dbb521293bc93c\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B58B6D18-5E7B-37CB-A613-A893B084B7D1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\FlutterInSchool\DoAn\quiz_app\build\windows\CMakeFiles\bbab0c9a7dd1818dbc07548fc191a4c2\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{1E1A17A7-09D2-3F38-8F25-B1527C35604E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+^D:\FLUTTERINSCHOOL\DOAN\QUIZ_APP\BUILD\WINDOWS\CMAKEFILES\BBAB0C9A7DD1818DBC07548FC191A4C2\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/FlutterInSchool/DoAn/quiz_app/windows -BD:/FlutterInSchool/DoAn/quiz_app/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/FlutterInSchool/DoAn/quiz_app/build/windows/quiz_app.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
